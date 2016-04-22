@@ -6,7 +6,7 @@
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
-/*    Module:     vexmain.c                                                    */
+/*    Module:     vexuser.c                                                    */
 /*    Author:     James Pearman                                                */
 /*    Created:    7 May 2013                                                   */
 /*                                                                             */
@@ -40,110 +40,67 @@
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 
+#include <stdlib.h>
 
-#include <string.h>
-
-#include "ch.h"
-#include "hal.h"
-#include "chprintf.h"
-#include "vex.h"
+#include "ch.h"  		// needs for all ChibiOS programs
+#include "hal.h" 		// hardware abstraction layer header
+#include "vex.h"		// vex library header
 
 #include "smartmotor.h"
-#include "apollo.h"
 
+// No header for default code, define protos here
+void    vexCortexDefaultSetup( void );
+void    vexCortexDefaultDriver( void );
 
-
-/*-----------------------------------------------------------------------------*/
-/* Command line related.                                                       */
-/*-----------------------------------------------------------------------------*/
-
-static void
-cmd_apollo( vexStream *chp, int argc, char *argv[])
+// Initialize the digital ports
+void
+vexUserSetup()
 {
-  (void)argc;
-  (void)argv;
-
-  apolloInit();
-
-  // run until any key press
-  while( sdGetWouldBlock((SerialDriver *)chp) )
-  {
-    apolloUpdate();
-  }
-
-  apolloDeinit();
+    vexCortexDefaultSetup();
 }
 
-#define SHELL_WA_SIZE   THD_WA_SIZE(512)
-
-// Shell command
-static const ShellCommand commands[] = {
-  {"adc",     vexAdcDebug },
-  {"spi",     vexSpiDebug },
-  {"motor",   vexMotorDebug},
-  {"lcd",     vexLcdDebug},
-  {"enc",     vexEncoderDebug},
-  {"son",     vexSonarDebug},
-  {"ime",     vexIMEDebug},
-  {"test",    vexTestDebug},
-  {"apollo",  cmd_apollo},
-  {NULL, NULL}
-};
-
-// configuration for the shell
-static const ShellConfig shell_cfg1 = {
-  (vexStream *)SD_CONSOLE,
-   commands
-};
-
-/*-----------------------------------------------------------------------------*/
-//  Application entry point.											       */
-/*-----------------------------------------------------------------------------*/
-
-int main(void)
+// called before either autonomous or user control
+void
+vexUserInit()
 {
-	Thread *shelltp = NULL;
-	short	timeout = 0;
-
-	// System initializations.
-  // - HAL initialization, this also initializes the configured device drivers
-  //   and performs the board-specific initializations.
-  // - Kernel initialization, the main() function becomes a thread and the
-  //   RTOS is active.
-	halInit();
-	chSysInit();
-
-	// Init the serial port associated with the console
-	vexConsoleInit();
-
-  // init VEX
-  vexCortexInit();
-
-  // wait for good spi comms
-  while( vexSpiGetOnlineStatus() == 0 )
-  {
-    // wait for a while
-    chThdSleepMilliseconds(100);
-    // dump after 5 seconds
-    if(timeout++ == 50)
-      break;
-  }
-
-  // Shell manager initialization.
-  shellInit();
-
-  // spin in loop monitoring the shell
-  while (TRUE)
-  {
-    if (!shelltp)
-      shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
-    else
-	    if (chThdTerminated(shelltp))
-      {
-        chThdRelease(shelltp);    /* Recovers memory of the previous shell.   */
-        shelltp = NULL;           /* Triggers spawning of a new shell.        */
-      }
-    chThdSleepMilliseconds(50);
-  }
-    
+  SmartMotorsInit();
+  SmartMotorCurrentMonitorEnable();
+  SmartMotorRun();
 }
+
+// Autonomous control task
+msg_t
+vexAutonomous( void *arg )
+{
+    (void)arg;
+
+    // Must call this
+    vexTaskRegister("auton");
+
+    while(1)
+        {
+        // Don't hog cpu
+        vexSleep( 25 );
+        }
+
+    return (msg_t)0;
+}
+
+
+// Driver control task
+msg_t
+vexOperator( void *arg )
+{
+	(void)arg;
+
+	// Must call this
+	vexTaskRegister("operator");
+
+	// call default code - blocks until termination
+	vexCortexDefaultDriver();
+
+	return (msg_t)0;
+}
+
+
+

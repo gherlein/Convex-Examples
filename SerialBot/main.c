@@ -1,17 +1,17 @@
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
-/*                        Copyright (c) James Pearman                          */
-/*                                   2013                                      */
+/*                        Copyright (c) Greg Herlein                           */
+/*                                   2016                                      */
 /*                            All Rights Reserved                              */
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
 /*    Module:     vexmain.c                                                    */
-/*    Author:     James Pearman                                                */
-/*    Created:    7 May 2013                                                   */
+/*    Author:     Greg Herlein                                                 */
+/*    Created:    21 May 2016                                                  */
 /*                                                                             */
 /*    Revisions:                                                               */
-/*                V1.00  04 July 2013 - Initial release                        */
+
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
@@ -42,6 +42,8 @@
 
 
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "ch.h"
 #include "hal.h"
@@ -51,49 +53,47 @@
 #include "smartmotor.h"
 #include "apollo.h"
 
-
-
 /*-----------------------------------------------------------------------------*/
 /* Command line related.                                                       */
 /*-----------------------------------------------------------------------------*/
+#define SHELL_WA_SIZE   THD_WA_SIZE(2048)
 
 static void
-cmd_apollo( vexStream *chp, int argc, char *argv[])
+noOp( vexStream *chp, int argc, char *argv[])
 {
-  (void)argc;
-  (void)argv;
-
-  apolloInit();
-
-  // run until any key press
-  while( sdGetWouldBlock((SerialDriver *)chp) )
-  {
-    apolloUpdate();
-  }
-
-  apolloDeinit();
+    (void)argv;
+    (void)chp;
+    (void)argc;
+ 
 }
 
-#define SHELL_WA_SIZE   THD_WA_SIZE(512)
+static void
+servexMotor( vexStream *chp, int argc, char *argv[])
+{
+  (void)argc;
+  int motIndex=atoi(argv[0]);
+  int speed=atoi(argv[1]);
+  vex_chprintf(chp, "< motor %d set to %d\r\n",motIndex,speed);
 
-// Shell command
-static const ShellCommand commands[] = {
-  {"adc",     vexAdcDebug },
-  {"spi",     vexSpiDebug },
-  {"motor",   vexMotorDebug},
-  {"lcd",     vexLcdDebug},
-  {"enc",     vexEncoderDebug},
-  {"son",     vexSonarDebug},
-  {"ime",     vexIMEDebug},
-  {"test",    vexTestDebug},
-  {"apollo",  cmd_apollo},
+//  vexMotorSet(motIndex);
+
+
+}
+
+
+static const SerialCommand commands[] = {
+  {"m",        servexMotor},
+  {"do",       noOp},
+  {"di",       noOp},
+  {"a",        noOp},
   {NULL, NULL}
 };
 
 // configuration for the shell
-static const ShellConfig shell_cfg1 = {
+static const SerProtoConfig serial_cfg1 = {
   (vexStream *)SD_CONSOLE,
-   commands
+  commands,
+  "|"
 };
 
 /*-----------------------------------------------------------------------------*/
@@ -132,11 +132,12 @@ int main(void)
   // Shell manager initialization.
   shellInit();
 
+  
   // spin in loop monitoring the shell
   while (TRUE)
   {
     if (!shelltp)
-      shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+      shelltp = serialCreate(&serial_cfg1, SHELL_WA_SIZE, NORMALPRIO);
     else
 	    if (chThdTerminated(shelltp))
       {
@@ -145,5 +146,5 @@ int main(void)
       }
     chThdSleepMilliseconds(50);
   }
-    
 }
+

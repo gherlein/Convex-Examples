@@ -6,9 +6,9 @@
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
-/*    Module:     vexmain.c                                                    */
+/*    Module:     vexdefault.c                                                 */
 /*    Author:     James Pearman                                                */
-/*    Created:    7 May 2013                                                   */
+/*    Created:    8 July 2013                                                  */
 /*                                                                             */
 /*    Revisions:                                                               */
 /*                V1.00  04 July 2013 - Initial release                        */
@@ -39,111 +39,58 @@
 /*    Mentor for team 8888 RoboLancers, Pasadena CA.                           */
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
-
-
-#include <string.h>
-
-#include "ch.h"
-#include "hal.h"
-#include "chprintf.h"
-#include "vex.h"
-
-#include "smartmotor.h"
-#include "apollo.h"
-
-
+#include <stdlib.h>
+#include "vexdefault.h"
 
 /*-----------------------------------------------------------------------------*/
-/* Command line related.                                                       */
+/** @brief      Cortex default code initialization                             */
 /*-----------------------------------------------------------------------------*/
+/** @details
+ *  Setup motors and digital ports
+ */
 
-static void
-cmd_apollo( vexStream *chp, int argc, char *argv[])
+void
+vexCortexDefaultSetup(void)
 {
-  (void)argc;
-  (void)argv;
-
-  apolloInit();
-
-  // run until any key press
-  while( sdGetWouldBlock((SerialDriver *)chp) )
-  {
-    apolloUpdate();
-  }
-
-  apolloDeinit();
+    vexDigitalConfigure( dConfig, DIG_CONFIG_SIZE( dConfig ) );
+    vexMotorConfigure( mConfig, MOT_CONFIG_SIZE( mConfig ) );
 }
 
-#define SHELL_WA_SIZE   THD_WA_SIZE(512)
-
-// Shell command
-static const ShellCommand commands[] = {
-  {"adc",     vexAdcDebug },
-  {"spi",     vexSpiDebug },
-  {"motor",   vexMotorDebug},
-  {"lcd",     vexLcdDebug},
-  {"enc",     vexEncoderDebug},
-  {"son",     vexSonarDebug},
-  {"ime",     vexIMEDebug},
-  {"test",    vexTestDebug},
-  {"apollo",  cmd_apollo},
-  {NULL, NULL}
-};
-
-// configuration for the shell
-static const ShellConfig shell_cfg1 = {
-  (vexStream *)SD_CONSOLE,
-   commands
-};
-
 /*-----------------------------------------------------------------------------*/
-//  Application entry point.											       */
+/** @brief      Cortex default code                                            */
 /*-----------------------------------------------------------------------------*/
-
-int main(void)
+/** @details
+ *  This function simulates the cortex default code, it was based on the ROBOTC
+ *  implementation but with some changes in structure.
+ */
+void
+vexCortexDefaultDriver(void)
 {
-	Thread *shelltp = NULL;
-	short	timeout = 0;
-
-	// System initializations.
-  // - HAL initialization, this also initializes the configured device drivers
-  //   and performs the board-specific initializations.
-  // - Kernel initialization, the main() function becomes a thread and the
-  //   RTOS is active.
-	halInit();
-	chSysInit();
-
-	// Init the serial port associated with the console
-	vexConsoleInit();
-
-  // init VEX
-  vexCortexInit();
-
-  // wait for good spi comms
-  while( vexSpiGetOnlineStatus() == 0 )
+  int16_t drive_left  = 0;
+  int16_t drive_right = 0;
+  
+  while( !chThdShouldTerminate() )
   {
-    // wait for a while
-    chThdSleepMilliseconds(100);
-    // dump after 5 seconds
-    if(timeout++ == 50)
-      break;
-  }
+    vexMotorDirectionSet( LeftFront,  kVexMotorNormal );
+    vexMotorDirectionSet( LeftBack,  kVexMotorNormal );
+    vexMotorDirectionSet( RightFront,  kVexMotorNormal );
+    vexMotorDirectionSet( RightBack,  kVexMotorNormal );
 
-  // Shell manager initialization.
-  shellInit();
+    drive_left  =  vexControllerGet( Ch3 ); // up = CW
+    drive_right = -vexControllerGet( Ch2 ); // up = CCW
 
-  // spin in loop monitoring the shell
-  while (TRUE)
-  {
-    if (!shelltp)
-      shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
-    else
-	    if (chThdTerminated(shelltp))
-      {
-        chThdRelease(shelltp);    /* Recovers memory of the previous shell.   */
-        shelltp = NULL;           /* Triggers spawning of a new shell.        */
-      }
-    chThdSleepMilliseconds(50);
-  }
+    if(abs(drive_right)<DEBOUNCE_VALUE) drive_right=0;
+    if(abs(drive_left)<DEBOUNCE_VALUE)  drive_left=0;
     
+    // Left drive motors
+    vexMotorSet( LeftFront,   drive_left  );
+    vexMotorSet( LeftBack,    drive_left  );
+
+    // Right drive motors
+    vexMotorSet( RightFront,  drive_right );
+    vexMotorSet( RightBack,   drive_right );
+
+    // small delay
+    vexSleep(10);
+  }
 }

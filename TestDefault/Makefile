@@ -2,10 +2,6 @@
 # Build global options
 # NOTE: Can be overridden externally.
 #
-
-# for command line arm tools set this here or in an env variable
-#ARM_TOOLS_FOLDER = /usr/local/gcc-arm-none-eabi-5_2-2015q4/bin/
-
 include setup.mk
 
 # Compiler options here.
@@ -37,7 +33,6 @@ endif
 ifeq ($(USE_VERBOSE_COMPILE),)
   USE_VERBOSE_COMPILE = no
 endif
-
 
 #
 # Build global options
@@ -72,12 +67,12 @@ endif
 
 # Path to ChibiOS/RT - default assumes making examples
 ifeq ($(CHIBIOS),)
-CHIBIOS = ../../ChibiOS
+CHIBIOS = ../../../../ChibiOS_2.6.2
 endif
 
 # Path to ConVEX root - default assumes making examples
 ifeq ($(CONVEX),)
-CONVEX  = ../../convex/convex/cortex
+CONVEX  = ../..
 endif
 
 # Imported source files and paths
@@ -149,6 +144,7 @@ INCDIR = $(PORTINC) $(KERNINC) \
 #
 # Project, sources and paths
 ##############################################################################
+
 ##############################################################################
 # Compiler settings
 #
@@ -156,8 +152,7 @@ INCDIR = $(PORTINC) $(KERNINC) \
 MCU  = cortex-m3
 
 #TRGT = arm-elf-
-#TRGT = arm-none-eabi-
-TRGT = $(ARM_TOOLS_FOLDER)arm-none-eabi-
+TRGT = arm-none-eabi-
 CC   = $(TRGT)gcc
 CPPC = $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.
@@ -213,15 +208,9 @@ DLIBS =
 ##############################################################################
 # Start of user section
 #
-#
-# local tooling
-#
-CORTEX_FLASH_FOLDER=/usr/local/bin/
-SERIAL_PORT = /dev/tty.usbmodem1420 
-GIT_SHORT_HASH = $(shell git log -1 --pretty=format:%h)
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = -DPROJECT=$(PROJECT) -DGIT_SHORT_HASH=$(GIT_SHORT_HASH)
+UDEFS =
 
 # Define ASM defines here
 UADEFS =
@@ -247,7 +236,3 @@ ifeq ($(USE_FWLIB),yes)
 endif
 
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk
-
-
-install:
-	$(CORTEX_FLASH_FOLDER)cortexflash -X -w bin/$(PROJECT).hex -g 0x0 $(SERIAL_PORT)

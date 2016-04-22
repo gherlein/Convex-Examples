@@ -1,17 +1,17 @@
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
-/*                        Copyright (c) James Pearman                          */
-/*                                   2013                                      */
+/*                        Copyright (c) Greg Herlein                           */
+/*                                   2016                                      */
 /*                            All Rights Reserved                              */
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
 /*    Module:     vexmain.c                                                    */
-/*    Author:     James Pearman                                                */
-/*    Created:    7 May 2013                                                   */
+/*    Author:     Greg Herlein                                                 */
+/*    Created:    21 May 2016                                                  */
 /*                                                                             */
 /*    Revisions:                                                               */
-/*                V1.00  04 July 2013 - Initial release                        */
+
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
@@ -51,11 +51,10 @@
 #include "smartmotor.h"
 #include "apollo.h"
 
-
-
 /*-----------------------------------------------------------------------------*/
 /* Command line related.                                                       */
 /*-----------------------------------------------------------------------------*/
+#define SHELL_WA_SIZE   THD_WA_SIZE(2048)
 
 static void
 cmd_apollo( vexStream *chp, int argc, char *argv[])
@@ -74,7 +73,15 @@ cmd_apollo( vexStream *chp, int argc, char *argv[])
   apolloDeinit();
 }
 
-#define SHELL_WA_SIZE   THD_WA_SIZE(512)
+static void
+cmd_sm(vexStream *chp, int argc, char *argv[])
+{
+    (void)argv;
+    (void)chp;
+    (void)argc;
+
+    SmartMotorDebugStatus();
+}
 
 // Shell command
 static const ShellCommand commands[] = {
@@ -86,8 +93,9 @@ static const ShellCommand commands[] = {
   {"son",     vexSonarDebug},
   {"ime",     vexIMEDebug},
   {"test",    vexTestDebug},
+  {"sm",      cmd_sm },
   {"apollo",  cmd_apollo},
-  {NULL, NULL}
+   {NULL, NULL}
 };
 
 // configuration for the shell
@@ -132,6 +140,7 @@ int main(void)
   // Shell manager initialization.
   shellInit();
 
+  
   // spin in loop monitoring the shell
   while (TRUE)
   {
@@ -145,5 +154,5 @@ int main(void)
       }
     chThdSleepMilliseconds(50);
   }
-    
 }
+
