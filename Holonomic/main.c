@@ -40,6 +40,7 @@
 /*                                                                             */
 /*-----------------------------------------------------------------------------*/
 
+
 #include <string.h>
 
 #include "ch.h"
@@ -50,7 +51,58 @@
 #include "smartmotor.h"
 #include "apollo.h"
 
+/*-----------------------------------------------------------------------------*/
+/* Command line related.                                                       */
+/*-----------------------------------------------------------------------------*/
+#define SHELL_WA_SIZE   THD_WA_SIZE(2048)
 
+static void
+cmd_apollo( vexStream *chp, int argc, char *argv[])
+{
+  (void)argc;
+  (void)argv;
+
+  apolloInit();
+
+  // run until any key press
+  while( sdGetWouldBlock((SerialDriver *)chp) )
+  {
+    apolloUpdate();
+  }
+
+  apolloDeinit();
+}
+
+static void
+cmd_sm(vexStream *chp, int argc, char *argv[])
+{
+    (void)argv;
+    (void)chp;
+    (void)argc;
+
+    SmartMotorDebugStatus();
+}
+
+// Shell command
+static const ShellCommand commands[] = {
+  {"adc",     vexAdcDebug },
+  {"spi",     vexSpiDebug },
+  {"motor",   vexMotorDebug},
+  {"lcd",     vexLcdDebug},
+  {"enc",     vexEncoderDebug},
+  {"son",     vexSonarDebug},
+  {"ime",     vexIMEDebug},
+  {"test",    vexTestDebug},
+  {"sm",      cmd_sm },
+  {"apollo",  cmd_apollo},
+   {NULL, NULL}
+};
+
+// configuration for the shell
+static const ShellConfig shell_cfg1 = {
+  (vexStream *)SD_CONSOLE,
+   commands
+};
 
 /*-----------------------------------------------------------------------------*/
 //  Application entry point.											       */
@@ -58,6 +110,7 @@
 
 int main(void)
 {
+	Thread *shelltp = NULL;
 	short	timeout = 0;
 
 	// System initializations.
@@ -84,5 +137,22 @@ int main(void)
       break;
   }
 
+  // Shell manager initialization.
+  shellInit();
+
+  
+  // spin in loop monitoring the shell
+  while (TRUE)
+  {
+    if (!shelltp)
+      shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+    else
+	    if (chThdTerminated(shelltp))
+      {
+        chThdRelease(shelltp);    /* Recovers memory of the previous shell.   */
+        shelltp = NULL;           /* Triggers spawning of a new shell.        */
+      }
+    chThdSleepMilliseconds(50);
+  }
 }
 

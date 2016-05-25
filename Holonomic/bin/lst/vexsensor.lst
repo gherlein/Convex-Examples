@@ -1,0 +1,2176 @@
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"vexsensor.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.vexSensorIsAnalog,"ax",%progbits
+  20              		.align	2
+  21              		.p2align 4,,15
+  22              		.global	vexSensorIsAnalog
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	vexSensorIsAnalog, %function
+  26              	vexSensorIsAnalog:
+  27              	.LFB63:
+  28              		.file 1 "../../convex/convex/cortex/fw/vexsensor.c"
+  29              		.loc 1 63 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35 0000 C0B2     		uxtb	r0, r0
+  36              		.loc 1 68 0
+  37 0002 0728     		cmp	r0, #7
+  38 0004 8CBF     		ite	hi
+  39 0006 0020     		movhi	r0, #0
+  40              	.LVL1:
+  41 0008 0120     		movls	r0, #1
+  42 000a 7047     		bx	lr
+  43              		.cfi_endproc
+  44              	.LFE63:
+  45              		.size	vexSensorIsAnalog, .-vexSensorIsAnalog
+  46              		.section	.text.vexSensorValueGet,"ax",%progbits
+  47              		.align	2
+  48              		.p2align 4,,15
+  49              		.global	vexSensorValueGet
+  50              		.thumb
+  51              		.thumb_func
+  52              		.type	vexSensorValueGet, %function
+  53              	vexSensorValueGet:
+  54              	.LFB64:
+  55              		.loc 1 79 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 2
+
+
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              	.LVL2:
+  60              		.loc 1 80 0
+  61 0000 0728     		cmp	r0, #7
+  62              		.loc 1 79 0
+  63 0002 10B5     		push	{r4, lr}
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 4, -8
+  66              		.cfi_offset 14, -4
+  67              		.loc 1 80 0
+  68 0004 26DD     		ble	.L17
+  69              		.loc 1 83 0
+  70 0006 1328     		cmp	r0, #19
+  71 0008 08DD     		ble	.L18
+  72              		.loc 1 119 0
+  73 000a 1B28     		cmp	r0, #27
+  74 000c 01DD     		ble	.L19
+  75              	.LVL3:
+  76              	.L14:
+  77              		.loc 1 125 0
+  78 000e 0020     		movs	r0, #0
+  79              		.loc 1 126 0
+  80 0010 10BD     		pop	{r4, pc}
+  81              	.LVL4:
+  82              	.L19:
+  83              	.LBB2:
+  84              		.loc 1 122 0
+  85 0012 1438     		subs	r0, r0, #20
+  86              	.LVL5:
+  87              	.LBE2:
+  88              		.loc 1 126 0
+  89 0014 BDE81040 		pop	{r4, lr}
+  90              		.cfi_remember_state
+  91              		.cfi_restore 14
+  92              		.cfi_restore 4
+  93              		.cfi_def_cfa_offset 0
+  94              	.LBB3:
+  95              		.loc 1 122 0
+  96 0018 FFF7FEBF 		b	vexImeGetCount
+  97              	.LVL6:
+  98              	.L18:
+  99              		.cfi_restore_state
+ 100              	.LBE3:
+ 101              	.LBB4:
+ 102              		.loc 1 86 0
+ 103 001c 0838     		subs	r0, r0, #8
+ 104              	.LVL7:
+ 105              		.loc 1 87 0
+ 106 001e 44B2     		sxtb	r4, r0
+ 107 0020 2046     		mov	r0, r4
+ 108 0022 FFF7FEFF 		bl	vexDigitalTypeGet
+ 109              	.LVL8:
+ 110              		.loc 1 89 0
+ 111 0026 0138     		subs	r0, r0, #1
+ 112              	.LVL9:
+ 113 0028 0728     		cmp	r0, #7
+ 114 002a F0D8     		bhi	.L14
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 3
+
+
+ 115 002c 01A3     		adr	r3, .L7
+ 116 002e 53F820F0 		ldr	pc, [r3, r0, lsl #2]
+ 117 0032 00BF     		.p2align 2
+ 118              	.L7:
+ 119 0034 5B000000 		.word	.L12+1
+ 120 0038 5B000000 		.word	.L12+1
+ 121 003c 63000000 		.word	.L9+1
+ 122 0040 81000000 		.word	.L10+1
+ 123 0044 73000000 		.word	.L11+1
+ 124 0048 0F000000 		.word	.L14+1
+ 125 004c 0F000000 		.word	.L14+1
+ 126 0050 5B000000 		.word	.L12+1
+ 127              	.LVL10:
+ 128              		.p2align 1
+ 129              	.L17:
+ 130              	.LBE4:
+ 131              		.loc 1 81 0
+ 132 0054 FFF7FEFF 		bl	vexAdcGet
+ 133              	.LVL11:
+ 134 0058 10BD     		pop	{r4, pc}
+ 135              	.LVL12:
+ 136              	.L12:
+ 137              	.LBB5:
+ 138              		.loc 1 100 0
+ 139 005a 2046     		mov	r0, r4
+ 140 005c FFF7FEFF 		bl	vexDigitalPinGet
+ 141              	.LVL13:
+ 142 0060 10BD     		pop	{r4, pc}
+ 143              	.LVL14:
+ 144              	.L9:
+ 145              		.loc 1 103 0
+ 146 0062 2046     		mov	r0, r4
+ 147 0064 FFF7FEFF 		bl	vexDigitalChannelGet
+ 148              	.LVL15:
+ 149              	.LBE5:
+ 150              		.loc 1 126 0
+ 151 0068 BDE81040 		pop	{r4, lr}
+ 152              		.cfi_remember_state
+ 153              		.cfi_restore 14
+ 154              		.cfi_restore 4
+ 155              		.cfi_def_cfa_offset 0
+ 156              	.LVL16:
+ 157              	.LBB6:
+ 158              		.loc 1 104 0
+ 159 006c 00B2     		sxth	r0, r0
+ 160 006e FFF7FEBF 		b	vexEncoderGet
+ 161              	.LVL17:
+ 162              	.L11:
+ 163              		.cfi_restore_state
+ 164              		.loc 1 111 0
+ 165 0072 2046     		mov	r0, r4
+ 166 0074 FFF7FEFF 		bl	vexDigitalChannelGet
+ 167              	.LVL18:
+ 168              		.loc 1 112 0
+ 169 0078 C0B2     		uxtb	r0, r0
+ 170              	.LVL19:
+ 171 007a FFF7FEFF 		bl	vexSonarGetInch
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 4
+
+
+ 172              	.LVL20:
+ 173 007e 10BD     		pop	{r4, pc}
+ 174              	.LVL21:
+ 175              	.L10:
+ 176              		.loc 1 107 0
+ 177 0080 2046     		mov	r0, r4
+ 178 0082 FFF7FEFF 		bl	vexDigitalChannelGet
+ 179              	.LVL22:
+ 180              		.loc 1 108 0
+ 181 0086 C0B2     		uxtb	r0, r0
+ 182              	.LVL23:
+ 183 0088 FFF7FEFF 		bl	vexSonarGetCm
+ 184              	.LVL24:
+ 185 008c 10BD     		pop	{r4, pc}
+ 186              	.LBE6:
+ 187              		.cfi_endproc
+ 188              	.LFE64:
+ 189              		.size	vexSensorValueGet, .-vexSensorValueGet
+ 190 008e 00BF     		.section	.text.vexSensorValueSet,"ax",%progbits
+ 191              		.align	2
+ 192              		.p2align 4,,15
+ 193              		.global	vexSensorValueSet
+ 194              		.thumb
+ 195              		.thumb_func
+ 196              		.type	vexSensorValueSet, %function
+ 197              	vexSensorValueSet:
+ 198              	.LFB65:
+ 199              		.loc 1 138 0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              	.LVL25:
+ 204              		.loc 1 139 0
+ 205 0000 0728     		cmp	r0, #7
+ 206 0002 03DD     		ble	.L26
+ 207              		.loc 1 142 0
+ 208 0004 1328     		cmp	r0, #19
+ 209 0006 02DD     		ble	.L27
+ 210              		.loc 1 172 0
+ 211 0008 1B28     		cmp	r0, #27
+ 212 000a 0DDD     		ble	.L28
+ 213              	.L26:
+ 214 000c 7047     		bx	lr
+ 215              	.L27:
+ 216              		.loc 1 138 0
+ 217 000e 38B5     		push	{r3, r4, r5, lr}
+ 218              		.cfi_def_cfa_offset 16
+ 219              		.cfi_offset 3, -16
+ 220              		.cfi_offset 4, -12
+ 221              		.cfi_offset 5, -8
+ 222              		.cfi_offset 14, -4
+ 223              	.LBB7:
+ 224              		.loc 1 145 0
+ 225 0010 A0F10804 		sub	r4, r0, #8
+ 226              	.LVL26:
+ 227              		.loc 1 146 0
+ 228 0014 64B2     		sxtb	r4, r4
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 5
+
+
+ 229 0016 2046     		mov	r0, r4
+ 230              	.LVL27:
+ 231 0018 0D46     		mov	r5, r1
+ 232 001a FFF7FEFF 		bl	vexDigitalTypeGet
+ 233              	.LVL28:
+ 234              		.loc 1 148 0
+ 235 001e 0228     		cmp	r0, #2
+ 236 0020 0ED0     		beq	.L23
+ 237 0022 0328     		cmp	r0, #3
+ 238 0024 03D0     		beq	.L24
+ 239 0026 38BD     		pop	{r3, r4, r5, pc}
+ 240              	.LVL29:
+ 241              	.L28:
+ 242              		.cfi_def_cfa_offset 0
+ 243              		.cfi_restore 3
+ 244              		.cfi_restore 4
+ 245              		.cfi_restore 5
+ 246              		.cfi_restore 14
+ 247              	.LBE7:
+ 248              	.LBB8:
+ 249              		.loc 1 175 0
+ 250 0028 1438     		subs	r0, r0, #20
+ 251              	.LVL30:
+ 252 002a FFF7FEBF 		b	vexImeSetCount
+ 253              	.LVL31:
+ 254              	.L24:
+ 255              		.cfi_def_cfa_offset 16
+ 256              		.cfi_offset 3, -16
+ 257              		.cfi_offset 4, -12
+ 258              		.cfi_offset 5, -8
+ 259              		.cfi_offset 14, -4
+ 260              	.LBE8:
+ 261              	.LBB9:
+ 262              		.loc 1 160 0
+ 263 002e 2046     		mov	r0, r4
+ 264              	.LVL32:
+ 265 0030 FFF7FEFF 		bl	vexDigitalChannelGet
+ 266              	.LVL33:
+ 267              		.loc 1 161 0
+ 268 0034 2946     		mov	r1, r5
+ 269              	.LBE9:
+ 270              		.loc 1 179 0
+ 271 0036 BDE83840 		pop	{r3, r4, r5, lr}
+ 272              		.cfi_remember_state
+ 273              		.cfi_restore 14
+ 274              		.cfi_restore 5
+ 275              		.cfi_restore 4
+ 276              		.cfi_restore 3
+ 277              		.cfi_def_cfa_offset 0
+ 278              	.LVL34:
+ 279              	.LBB10:
+ 280              		.loc 1 161 0
+ 281 003a 00B2     		sxth	r0, r0
+ 282 003c FFF7FEBF 		b	vexEncoderSet
+ 283              	.LVL35:
+ 284              	.L23:
+ 285              		.cfi_restore_state
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 6
+
+
+ 286              		.loc 1 157 0
+ 287 0040 E9B2     		uxtb	r1, r5
+ 288 0042 2046     		mov	r0, r4
+ 289              	.LVL36:
+ 290              	.LBE10:
+ 291              		.loc 1 179 0
+ 292 0044 BDE83840 		pop	{r3, r4, r5, lr}
+ 293              		.cfi_restore 14
+ 294              		.cfi_restore 5
+ 295              		.cfi_restore 4
+ 296              		.cfi_restore 3
+ 297              		.cfi_def_cfa_offset 0
+ 298              	.LVL37:
+ 299              	.LBB11:
+ 300              		.loc 1 157 0
+ 301 0048 FFF7FEBF 		b	vexDigitalPinSet
+ 302              	.LVL38:
+ 303              	.LBE11:
+ 304              		.cfi_endproc
+ 305              	.LFE65:
+ 306              		.size	vexSensorValueSet, .-vexSensorValueSet
+ 307              		.text
+ 308              	.Letext0:
+ 309              		.file 2 "/usr/local/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/machine/_default_types.h"
+ 310              		.file 3 "/usr/local/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/sys/_stdint.h"
+ 311              		.file 4 "../../ChibiOS/os/ports/GCC/ARMCMx/chtypes.h"
+ 312              		.file 5 "../../convex/convex/cortex/fw/vexdigital.h"
+ 313              		.file 6 "../../convex/convex/cortex/fw/vexconfig.h"
+ 314              		.file 7 "../../convex/convex/cortex/fw/vexsensor.h"
+ 315              		.file 8 "../../convex/convex/cortex/fw/vexime.h"
+ 316              		.file 9 "../../convex/convex/cortex/fw/vexencoder.h"
+ 317              		.file 10 "../../convex/convex/cortex/fw/vexsonar.h"
+ 318              		.file 11 "../../convex/convex/cortex/fw/vexanalog.h"
+ 319              		.file 12 "../../ChibiOS/os/ports/common/ARMCMx/CMSIS/include/core_cm3.h"
+ 320              		.section	.debug_info,"",%progbits
+ 321              	.Ldebug_info0:
+ 322 0000 CB040000 		.4byte	0x4cb
+ 323 0004 0400     		.2byte	0x4
+ 324 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 325 000a 04       		.byte	0x4
+ 326 000b 01       		.uleb128 0x1
+ 327 000c B5020000 		.4byte	.LASF90
+ 328 0010 0C       		.byte	0xc
+ 329 0011 79020000 		.4byte	.LASF91
+ 330 0015 9E000000 		.4byte	.LASF92
+ 331 0019 60000000 		.4byte	.Ldebug_ranges0+0x60
+ 332 001d 00000000 		.4byte	0
+ 333 0021 00000000 		.4byte	.Ldebug_line0
+ 334 0025 02       		.uleb128 0x2
+ 335 0026 04       		.byte	0x4
+ 336 0027 05       		.byte	0x5
+ 337 0028 696E7400 		.ascii	"int\000"
+ 338 002c 03       		.uleb128 0x3
+ 339 002d 04       		.byte	0x4
+ 340 002e 07       		.byte	0x7
+ 341 002f 08060000 		.4byte	.LASF0
+ 342 0033 03       		.uleb128 0x3
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 7
+
+
+ 343 0034 08       		.byte	0x8
+ 344 0035 05       		.byte	0x5
+ 345 0036 B1010000 		.4byte	.LASF1
+ 346 003a 03       		.uleb128 0x3
+ 347 003b 08       		.byte	0x8
+ 348 003c 04       		.byte	0x4
+ 349 003d FA010000 		.4byte	.LASF2
+ 350 0041 03       		.uleb128 0x3
+ 351 0042 01       		.byte	0x1
+ 352 0043 06       		.byte	0x6
+ 353 0044 31020000 		.4byte	.LASF3
+ 354 0048 03       		.uleb128 0x3
+ 355 0049 01       		.byte	0x1
+ 356 004a 08       		.byte	0x8
+ 357 004b 15020000 		.4byte	.LASF4
+ 358 004f 04       		.uleb128 0x4
+ 359 0050 93050000 		.4byte	.LASF7
+ 360 0054 02       		.byte	0x2
+ 361 0055 29       		.byte	0x29
+ 362 0056 5A000000 		.4byte	0x5a
+ 363 005a 03       		.uleb128 0x3
+ 364 005b 02       		.byte	0x2
+ 365 005c 05       		.byte	0x5
+ 366 005d 6F000000 		.4byte	.LASF5
+ 367 0061 03       		.uleb128 0x3
+ 368 0062 02       		.byte	0x2
+ 369 0063 07       		.byte	0x7
+ 370 0064 26050000 		.4byte	.LASF6
+ 371 0068 04       		.uleb128 0x4
+ 372 0069 5E050000 		.4byte	.LASF8
+ 373 006d 02       		.byte	0x2
+ 374 006e 3F       		.byte	0x3f
+ 375 006f 73000000 		.4byte	0x73
+ 376 0073 03       		.uleb128 0x3
+ 377 0074 04       		.byte	0x4
+ 378 0075 05       		.byte	0x5
+ 379 0076 CE010000 		.4byte	.LASF9
+ 380 007a 03       		.uleb128 0x3
+ 381 007b 04       		.byte	0x4
+ 382 007c 07       		.byte	0x7
+ 383 007d F5040000 		.4byte	.LASF10
+ 384 0081 03       		.uleb128 0x3
+ 385 0082 08       		.byte	0x8
+ 386 0083 07       		.byte	0x7
+ 387 0084 3D020000 		.4byte	.LASF11
+ 388 0088 04       		.uleb128 0x4
+ 389 0089 CA050000 		.4byte	.LASF12
+ 390 008d 03       		.byte	0x3
+ 391 008e 19       		.byte	0x19
+ 392 008f 4F000000 		.4byte	0x4f
+ 393 0093 04       		.uleb128 0x4
+ 394 0094 D4030000 		.4byte	.LASF13
+ 395 0098 03       		.byte	0x3
+ 396 0099 1F       		.byte	0x1f
+ 397 009a 68000000 		.4byte	0x68
+ 398 009e 04       		.uleb128 0x4
+ 399 009f D2050000 		.4byte	.LASF14
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 8
+
+
+ 400 00a3 04       		.byte	0x4
+ 401 00a4 2B       		.byte	0x2b
+ 402 00a5 A9000000 		.4byte	0xa9
+ 403 00a9 03       		.uleb128 0x3
+ 404 00aa 01       		.byte	0x1
+ 405 00ab 02       		.byte	0x2
+ 406 00ac 30040000 		.4byte	.LASF15
+ 407 00b0 03       		.uleb128 0x3
+ 408 00b1 04       		.byte	0x4
+ 409 00b2 07       		.byte	0x7
+ 410 00b3 79000000 		.4byte	.LASF16
+ 411 00b7 03       		.uleb128 0x3
+ 412 00b8 01       		.byte	0x1
+ 413 00b9 08       		.byte	0x8
+ 414 00ba 9B030000 		.4byte	.LASF17
+ 415 00be 05       		.uleb128 0x5
+ 416 00bf 93000000 		.4byte	0x93
+ 417 00c3 06       		.uleb128 0x6
+ 418 00c4 01       		.byte	0x1
+ 419 00c5 41000000 		.4byte	0x41
+ 420 00c9 05       		.byte	0x5
+ 421 00ca 8D       		.byte	0x8d
+ 422 00cb 24010000 		.4byte	0x124
+ 423 00cf 07       		.uleb128 0x7
+ 424 00d0 0E000000 		.4byte	.LASF18
+ 425 00d4 7F       		.sleb128 -1
+ 426 00d5 08       		.uleb128 0x8
+ 427 00d6 B8030000 		.4byte	.LASF19
+ 428 00da 00       		.byte	0
+ 429 00db 08       		.uleb128 0x8
+ 430 00dc C6030000 		.4byte	.LASF20
+ 431 00e0 01       		.byte	0x1
+ 432 00e1 08       		.uleb128 0x8
+ 433 00e2 6B020000 		.4byte	.LASF21
+ 434 00e6 02       		.byte	0x2
+ 435 00e7 08       		.uleb128 0x8
+ 436 00e8 DC030000 		.4byte	.LASF22
+ 437 00ec 03       		.byte	0x3
+ 438 00ed 08       		.uleb128 0x8
+ 439 00ee EA030000 		.4byte	.LASF23
+ 440 00f2 04       		.byte	0x4
+ 441 00f3 08       		.uleb128 0x8
+ 442 00f4 F8030000 		.4byte	.LASF24
+ 443 00f8 05       		.byte	0x5
+ 444 00f9 08       		.uleb128 0x8
+ 445 00fa 06040000 		.4byte	.LASF25
+ 446 00fe 06       		.byte	0x6
+ 447 00ff 08       		.uleb128 0x8
+ 448 0100 14040000 		.4byte	.LASF26
+ 449 0104 07       		.byte	0x7
+ 450 0105 08       		.uleb128 0x8
+ 451 0106 22040000 		.4byte	.LASF27
+ 452 010a 08       		.byte	0x8
+ 453 010b 08       		.uleb128 0x8
+ 454 010c 3D010000 		.4byte	.LASF28
+ 455 0110 09       		.byte	0x9
+ 456 0111 08       		.uleb128 0x8
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 9
+
+
+ 457 0112 4C010000 		.4byte	.LASF29
+ 458 0116 0A       		.byte	0xa
+ 459 0117 08       		.uleb128 0x8
+ 460 0118 5B010000 		.4byte	.LASF30
+ 461 011c 0B       		.byte	0xb
+ 462 011d 08       		.uleb128 0x8
+ 463 011e 9D050000 		.4byte	.LASF31
+ 464 0122 0C       		.byte	0xc
+ 465 0123 00       		.byte	0
+ 466 0124 04       		.uleb128 0x4
+ 467 0125 BB050000 		.4byte	.LASF32
+ 468 0129 05       		.byte	0x5
+ 469 012a 9D       		.byte	0x9d
+ 470 012b C3000000 		.4byte	0xc3
+ 471 012f 06       		.uleb128 0x6
+ 472 0130 01       		.byte	0x1
+ 473 0131 48000000 		.4byte	0x48
+ 474 0135 06       		.byte	0x6
+ 475 0136 3A       		.byte	0x3a
+ 476 0137 72010000 		.4byte	0x172
+ 477 013b 08       		.uleb128 0x8
+ 478 013c BF010000 		.4byte	.LASF33
+ 479 0140 00       		.byte	0
+ 480 0141 08       		.uleb128 0x8
+ 481 0142 46040000 		.4byte	.LASF34
+ 482 0146 01       		.byte	0x1
+ 483 0147 08       		.uleb128 0x8
+ 484 0148 A0030000 		.4byte	.LASF35
+ 485 014c 02       		.byte	0x2
+ 486 014d 08       		.uleb128 0x8
+ 487 014e 68050000 		.4byte	.LASF36
+ 488 0152 03       		.byte	0x3
+ 489 0153 08       		.uleb128 0x8
+ 490 0154 9A010000 		.4byte	.LASF37
+ 491 0158 04       		.byte	0x4
+ 492 0159 08       		.uleb128 0x8
+ 493 015a 39050000 		.4byte	.LASF38
+ 494 015e 05       		.byte	0x5
+ 495 015f 08       		.uleb128 0x8
+ 496 0160 00000000 		.4byte	.LASF39
+ 497 0164 06       		.byte	0x6
+ 498 0165 08       		.uleb128 0x8
+ 499 0166 FE000000 		.4byte	.LASF40
+ 500 016a 07       		.byte	0x7
+ 501 016b 08       		.uleb128 0x8
+ 502 016c E6010000 		.4byte	.LASF41
+ 503 0170 08       		.byte	0x8
+ 504 0171 00       		.byte	0
+ 505 0172 04       		.uleb128 0x4
+ 506 0173 06020000 		.4byte	.LASF42
+ 507 0177 06       		.byte	0x6
+ 508 0178 45       		.byte	0x45
+ 509 0179 2F010000 		.4byte	0x12f
+ 510 017d 06       		.uleb128 0x6
+ 511 017e 01       		.byte	0x1
+ 512 017f 41000000 		.4byte	0x41
+ 513 0183 07       		.byte	0x7
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 10
+
+
+ 514 0184 3C       		.byte	0x3c
+ 515 0185 38020000 		.4byte	0x238
+ 516 0189 07       		.uleb128 0x7
+ 517 018a D9050000 		.4byte	.LASF43
+ 518 018e 7F       		.sleb128 -1
+ 519 018f 08       		.uleb128 0x8
+ 520 0190 5D040000 		.4byte	.LASF44
+ 521 0194 00       		.byte	0
+ 522 0195 08       		.uleb128 0x8
+ 523 0196 70040000 		.4byte	.LASF45
+ 524 019a 01       		.byte	0x1
+ 525 019b 08       		.uleb128 0x8
+ 526 019c 83040000 		.4byte	.LASF46
+ 527 01a0 02       		.byte	0x2
+ 528 01a1 08       		.uleb128 0x8
+ 529 01a2 96040000 		.4byte	.LASF47
+ 530 01a6 03       		.byte	0x3
+ 531 01a7 08       		.uleb128 0x8
+ 532 01a8 A9040000 		.4byte	.LASF48
+ 533 01ac 04       		.byte	0x4
+ 534 01ad 08       		.uleb128 0x8
+ 535 01ae BC040000 		.4byte	.LASF49
+ 536 01b2 05       		.byte	0x5
+ 537 01b3 08       		.uleb128 0x8
+ 538 01b4 CF040000 		.4byte	.LASF50
+ 539 01b8 06       		.byte	0x6
+ 540 01b9 08       		.uleb128 0x8
+ 541 01ba E2040000 		.4byte	.LASF51
+ 542 01be 07       		.byte	0x7
+ 543 01bf 08       		.uleb128 0x8
+ 544 01c0 15060000 		.4byte	.LASF52
+ 545 01c4 08       		.byte	0x8
+ 546 01c5 08       		.uleb128 0x8
+ 547 01c6 29060000 		.4byte	.LASF53
+ 548 01ca 09       		.byte	0x9
+ 549 01cb 08       		.uleb128 0x8
+ 550 01cc 3D060000 		.4byte	.LASF54
+ 551 01d0 0A       		.byte	0xa
+ 552 01d1 08       		.uleb128 0x8
+ 553 01d2 51060000 		.4byte	.LASF55
+ 554 01d6 0B       		.byte	0xb
+ 555 01d7 08       		.uleb128 0x8
+ 556 01d8 65060000 		.4byte	.LASF56
+ 557 01dc 0C       		.byte	0xc
+ 558 01dd 08       		.uleb128 0x8
+ 559 01de 79060000 		.4byte	.LASF57
+ 560 01e2 0D       		.byte	0xd
+ 561 01e3 08       		.uleb128 0x8
+ 562 01e4 8D060000 		.4byte	.LASF58
+ 563 01e8 0E       		.byte	0xe
+ 564 01e9 08       		.uleb128 0x8
+ 565 01ea A1060000 		.4byte	.LASF59
+ 566 01ee 0F       		.byte	0xf
+ 567 01ef 08       		.uleb128 0x8
+ 568 01f0 B5060000 		.4byte	.LASF60
+ 569 01f4 10       		.byte	0x10
+ 570 01f5 08       		.uleb128 0x8
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 11
+
+
+ 571 01f6 45000000 		.4byte	.LASF61
+ 572 01fa 11       		.byte	0x11
+ 573 01fb 08       		.uleb128 0x8
+ 574 01fc 5A000000 		.4byte	.LASF62
+ 575 0200 12       		.byte	0x12
+ 576 0201 08       		.uleb128 0x8
+ 577 0202 7E050000 		.4byte	.LASF63
+ 578 0206 13       		.byte	0x13
+ 579 0207 08       		.uleb128 0x8
+ 580 0208 1D010000 		.4byte	.LASF64
+ 581 020c 14       		.byte	0x14
+ 582 020d 08       		.uleb128 0x8
+ 583 020e 2D010000 		.4byte	.LASF65
+ 584 0212 15       		.byte	0x15
+ 585 0213 08       		.uleb128 0x8
+ 586 0214 EE000000 		.4byte	.LASF66
+ 587 0218 16       		.byte	0x16
+ 588 0219 08       		.uleb128 0x8
+ 589 021a 36040000 		.4byte	.LASF67
+ 590 021e 17       		.byte	0x17
+ 591 021f 08       		.uleb128 0x8
+ 592 0220 07050000 		.4byte	.LASF68
+ 593 0224 18       		.byte	0x18
+ 594 0225 08       		.uleb128 0x8
+ 595 0226 6A010000 		.4byte	.LASF69
+ 596 022a 19       		.byte	0x19
+ 597 022b 08       		.uleb128 0x8
+ 598 022c 7A010000 		.4byte	.LASF70
+ 599 0230 1A       		.byte	0x1a
+ 600 0231 08       		.uleb128 0x8
+ 601 0232 8A010000 		.4byte	.LASF71
+ 602 0236 1B       		.byte	0x1b
+ 603 0237 00       		.byte	0
+ 604 0238 04       		.uleb128 0x4
+ 605 0239 8F030000 		.4byte	.LASF72
+ 606 023d 07       		.byte	0x7
+ 607 023e 64       		.byte	0x64
+ 608 023f 7D010000 		.4byte	0x17d
+ 609 0243 09       		.uleb128 0x9
+ 610 0244 C9060000 		.4byte	.LASF73
+ 611 0248 01       		.byte	0x1
+ 612 0249 3E       		.byte	0x3e
+ 613 024a 9E000000 		.4byte	0x9e
+ 614 024e 00000000 		.4byte	.LFB63
+ 615 0252 0C000000 		.4byte	.LFE63-.LFB63
+ 616 0256 01       		.uleb128 0x1
+ 617 0257 9C       		.byte	0x9c
+ 618 0258 6C020000 		.4byte	0x26c
+ 619 025c 0A       		.uleb128 0xa
+ 620 025d 16010000 		.4byte	.LASF75
+ 621 0261 01       		.byte	0x1
+ 622 0262 3E       		.byte	0x3e
+ 623 0263 38020000 		.4byte	0x238
+ 624 0267 00000000 		.4byte	.LLST0
+ 625 026b 00       		.byte	0
+ 626 026c 09       		.uleb128 0x9
+ 627 026d 59020000 		.4byte	.LASF74
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 12
+
+
+ 628 0271 01       		.byte	0x1
+ 629 0272 4E       		.byte	0x4e
+ 630 0273 93000000 		.4byte	0x93
+ 631 0277 00000000 		.4byte	.LFB64
+ 632 027b 8E000000 		.4byte	.LFE64-.LFB64
+ 633 027f 01       		.uleb128 0x1
+ 634 0280 9C       		.byte	0x9c
+ 635 0281 76030000 		.4byte	0x376
+ 636 0285 0A       		.uleb128 0xa
+ 637 0286 16010000 		.4byte	.LASF75
+ 638 028a 01       		.byte	0x1
+ 639 028b 4E       		.byte	0x4e
+ 640 028c 38020000 		.4byte	0x238
+ 641 0290 21000000 		.4byte	.LLST1
+ 642 0294 0B       		.uleb128 0xb
+ 643 0295 00000000 		.4byte	.Ldebug_ranges0+0
+ 644 0299 B6020000 		.4byte	0x2b6
+ 645 029d 0C       		.uleb128 0xc
+ 646 029e AC010000 		.4byte	.LASF76
+ 647 02a2 01       		.byte	0x1
+ 648 02a3 79       		.byte	0x79
+ 649 02a4 88000000 		.4byte	0x88
+ 650 02a8 8D000000 		.4byte	.LLST2
+ 651 02ac 0D       		.uleb128 0xd
+ 652 02ad 1C000000 		.4byte	.LVL6
+ 653 02b1 55040000 		.4byte	0x455
+ 654 02b5 00       		.byte	0
+ 655 02b6 0B       		.uleb128 0xb
+ 656 02b7 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 657 02bb 6C030000 		.4byte	0x36c
+ 658 02bf 0C       		.uleb128 0xc
+ 659 02c0 AC010000 		.4byte	.LASF76
+ 660 02c4 01       		.byte	0x1
+ 661 02c5 55       		.byte	0x55
+ 662 02c6 88000000 		.4byte	0x88
+ 663 02ca BC000000 		.4byte	.LLST3
+ 664 02ce 0E       		.uleb128 0xe
+ 665 02cf 70696E00 		.ascii	"pin\000"
+ 666 02d3 01       		.byte	0x1
+ 667 02d4 56       		.byte	0x56
+ 668 02d5 24010000 		.4byte	0x124
+ 669 02d9 E5000000 		.4byte	.LLST4
+ 670 02dd 0C       		.uleb128 0xc
+ 671 02de 54020000 		.4byte	.LASF77
+ 672 02e2 01       		.byte	0x1
+ 673 02e3 57       		.byte	0x57
+ 674 02e4 72010000 		.4byte	0x172
+ 675 02e8 19010000 		.4byte	.LLST5
+ 676 02ec 0F       		.uleb128 0xf
+ 677 02ed 26000000 		.4byte	.LVL8
+ 678 02f1 60040000 		.4byte	0x460
+ 679 02f5 00030000 		.4byte	0x300
+ 680 02f9 10       		.uleb128 0x10
+ 681 02fa 01       		.uleb128 0x1
+ 682 02fb 50       		.byte	0x50
+ 683 02fc 02       		.uleb128 0x2
+ 684 02fd 74       		.byte	0x74
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 13
+
+
+ 685 02fe 00       		.sleb128 0
+ 686 02ff 00       		.byte	0
+ 687 0300 0F       		.uleb128 0xf
+ 688 0301 60000000 		.4byte	.LVL13
+ 689 0305 6B040000 		.4byte	0x46b
+ 690 0309 14030000 		.4byte	0x314
+ 691 030d 10       		.uleb128 0x10
+ 692 030e 01       		.uleb128 0x1
+ 693 030f 50       		.byte	0x50
+ 694 0310 02       		.uleb128 0x2
+ 695 0311 74       		.byte	0x74
+ 696 0312 00       		.sleb128 0
+ 697 0313 00       		.byte	0
+ 698 0314 0F       		.uleb128 0xf
+ 699 0315 68000000 		.4byte	.LVL15
+ 700 0319 76040000 		.4byte	0x476
+ 701 031d 28030000 		.4byte	0x328
+ 702 0321 10       		.uleb128 0x10
+ 703 0322 01       		.uleb128 0x1
+ 704 0323 50       		.byte	0x50
+ 705 0324 02       		.uleb128 0x2
+ 706 0325 74       		.byte	0x74
+ 707 0326 00       		.sleb128 0
+ 708 0327 00       		.byte	0
+ 709 0328 0D       		.uleb128 0xd
+ 710 0329 72000000 		.4byte	.LVL17
+ 711 032d 81040000 		.4byte	0x481
+ 712 0331 0F       		.uleb128 0xf
+ 713 0332 78000000 		.4byte	.LVL18
+ 714 0336 76040000 		.4byte	0x476
+ 715 033a 45030000 		.4byte	0x345
+ 716 033e 10       		.uleb128 0x10
+ 717 033f 01       		.uleb128 0x1
+ 718 0340 50       		.byte	0x50
+ 719 0341 02       		.uleb128 0x2
+ 720 0342 74       		.byte	0x74
+ 721 0343 00       		.sleb128 0
+ 722 0344 00       		.byte	0
+ 723 0345 11       		.uleb128 0x11
+ 724 0346 7E000000 		.4byte	.LVL20
+ 725 034a 8C040000 		.4byte	0x48c
+ 726 034e 0F       		.uleb128 0xf
+ 727 034f 86000000 		.4byte	.LVL22
+ 728 0353 76040000 		.4byte	0x476
+ 729 0357 62030000 		.4byte	0x362
+ 730 035b 10       		.uleb128 0x10
+ 731 035c 01       		.uleb128 0x1
+ 732 035d 50       		.byte	0x50
+ 733 035e 02       		.uleb128 0x2
+ 734 035f 74       		.byte	0x74
+ 735 0360 00       		.sleb128 0
+ 736 0361 00       		.byte	0
+ 737 0362 11       		.uleb128 0x11
+ 738 0363 8C000000 		.4byte	.LVL24
+ 739 0367 97040000 		.4byte	0x497
+ 740 036b 00       		.byte	0
+ 741 036c 11       		.uleb128 0x11
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 14
+
+
+ 742 036d 58000000 		.4byte	.LVL11
+ 743 0371 A2040000 		.4byte	0x4a2
+ 744 0375 00       		.byte	0
+ 745 0376 12       		.uleb128 0x12
+ 746 0377 8C000000 		.4byte	.LASF93
+ 747 037b 01       		.byte	0x1
+ 748 037c 89       		.byte	0x89
+ 749 037d 00000000 		.4byte	.LFB65
+ 750 0381 4C000000 		.4byte	.LFE65-.LFB65
+ 751 0385 01       		.uleb128 0x1
+ 752 0386 9C       		.byte	0x9c
+ 753 0387 49040000 		.4byte	0x449
+ 754 038b 0A       		.uleb128 0xa
+ 755 038c 16010000 		.4byte	.LASF75
+ 756 0390 01       		.byte	0x1
+ 757 0391 89       		.byte	0x89
+ 758 0392 38020000 		.4byte	0x238
+ 759 0396 2C010000 		.4byte	.LLST6
+ 760 039a 0A       		.uleb128 0xa
+ 761 039b E8000000 		.4byte	.LASF78
+ 762 039f 01       		.byte	0x1
+ 763 03a0 89       		.byte	0x89
+ 764 03a1 93000000 		.4byte	0x93
+ 765 03a5 66010000 		.4byte	.LLST7
+ 766 03a9 0B       		.uleb128 0xb
+ 767 03aa 38000000 		.4byte	.Ldebug_ranges0+0x38
+ 768 03ae 26040000 		.4byte	0x426
+ 769 03b2 0C       		.uleb128 0xc
+ 770 03b3 AC010000 		.4byte	.LASF76
+ 771 03b7 01       		.byte	0x1
+ 772 03b8 90       		.byte	0x90
+ 773 03b9 88000000 		.4byte	0x88
+ 774 03bd DA010000 		.4byte	.LLST8
+ 775 03c1 0E       		.uleb128 0xe
+ 776 03c2 70696E00 		.ascii	"pin\000"
+ 777 03c6 01       		.byte	0x1
+ 778 03c7 91       		.byte	0x91
+ 779 03c8 24010000 		.4byte	0x124
+ 780 03cc ED010000 		.4byte	.LLST9
+ 781 03d0 0C       		.uleb128 0xc
+ 782 03d1 54020000 		.4byte	.LASF77
+ 783 03d5 01       		.byte	0x1
+ 784 03d6 92       		.byte	0x92
+ 785 03d7 72010000 		.4byte	0x172
+ 786 03db 21020000 		.4byte	.LLST10
+ 787 03df 0F       		.uleb128 0xf
+ 788 03e0 1E000000 		.4byte	.LVL28
+ 789 03e4 60040000 		.4byte	0x460
+ 790 03e8 F3030000 		.4byte	0x3f3
+ 791 03ec 10       		.uleb128 0x10
+ 792 03ed 01       		.uleb128 0x1
+ 793 03ee 50       		.byte	0x50
+ 794 03ef 02       		.uleb128 0x2
+ 795 03f0 74       		.byte	0x74
+ 796 03f1 00       		.sleb128 0
+ 797 03f2 00       		.byte	0
+ 798 03f3 0F       		.uleb128 0xf
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 15
+
+
+ 799 03f4 34000000 		.4byte	.LVL33
+ 800 03f8 76040000 		.4byte	0x476
+ 801 03fc 07040000 		.4byte	0x407
+ 802 0400 10       		.uleb128 0x10
+ 803 0401 01       		.uleb128 0x1
+ 804 0402 50       		.byte	0x50
+ 805 0403 02       		.uleb128 0x2
+ 806 0404 74       		.byte	0x74
+ 807 0405 00       		.sleb128 0
+ 808 0406 00       		.byte	0
+ 809 0407 13       		.uleb128 0x13
+ 810 0408 40000000 		.4byte	.LVL35
+ 811 040c AD040000 		.4byte	0x4ad
+ 812 0410 1C040000 		.4byte	0x41c
+ 813 0414 10       		.uleb128 0x10
+ 814 0415 01       		.uleb128 0x1
+ 815 0416 51       		.byte	0x51
+ 816 0417 03       		.uleb128 0x3
+ 817 0418 F3       		.byte	0xf3
+ 818 0419 01       		.uleb128 0x1
+ 819 041a 51       		.byte	0x51
+ 820 041b 00       		.byte	0
+ 821 041c 0D       		.uleb128 0xd
+ 822 041d 4C000000 		.4byte	.LVL38
+ 823 0421 B8040000 		.4byte	0x4b8
+ 824 0425 00       		.byte	0
+ 825 0426 14       		.uleb128 0x14
+ 826 0427 28000000 		.4byte	.LBB8
+ 827 042b 06000000 		.4byte	.LBE8-.LBB8
+ 828 042f 0C       		.uleb128 0xc
+ 829 0430 AC010000 		.4byte	.LASF76
+ 830 0434 01       		.byte	0x1
+ 831 0435 AE       		.byte	0xae
+ 832 0436 88000000 		.4byte	0x88
+ 833 043a 4A020000 		.4byte	.LLST11
+ 834 043e 0D       		.uleb128 0xd
+ 835 043f 2E000000 		.4byte	.LVL31
+ 836 0443 C3040000 		.4byte	0x4c3
+ 837 0447 00       		.byte	0
+ 838 0448 00       		.byte	0
+ 839 0449 15       		.uleb128 0x15
+ 840 044a ED050000 		.4byte	.LASF94
+ 841 044e 0C       		.byte	0xc
+ 842 044f 0706     		.2byte	0x607
+ 843 0451 BE000000 		.4byte	0xbe
+ 844 0455 16       		.uleb128 0x16
+ 845 0456 17050000 		.4byte	.LASF79
+ 846 045a 17050000 		.4byte	.LASF79
+ 847 045e 08       		.byte	0x8
+ 848 045f B1       		.byte	0xb1
+ 849 0460 16       		.uleb128 0x16
+ 850 0461 A3020000 		.4byte	.LASF80
+ 851 0465 A3020000 		.4byte	.LASF80
+ 852 0469 06       		.byte	0x6
+ 853 046a 84       		.byte	0x84
+ 854 046b 16       		.uleb128 0x16
+ 855 046c 1F000000 		.4byte	.LASF81
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 16
+
+
+ 856 0470 1F000000 		.4byte	.LASF81
+ 857 0474 05       		.byte	0x5
+ 858 0475 C4       		.byte	0xc4
+ 859 0476 16       		.uleb128 0x16
+ 860 0477 30000000 		.4byte	.LASF82
+ 861 047b 30000000 		.4byte	.LASF82
+ 862 047f 06       		.byte	0x6
+ 863 0480 86       		.byte	0x86
+ 864 0481 16       		.uleb128 0x16
+ 865 0482 AD050000 		.4byte	.LASF83
+ 866 0486 AD050000 		.4byte	.LASF83
+ 867 048a 09       		.byte	0x9
+ 868 048b 62       		.byte	0x62
+ 869 048c 16       		.uleb128 0x16
+ 870 048d D8000000 		.4byte	.LASF84
+ 871 0491 D8000000 		.4byte	.LASF84
+ 872 0495 0A       		.byte	0xa
+ 873 0496 67       		.byte	0x67
+ 874 0497 16       		.uleb128 0x16
+ 875 0498 FA050000 		.4byte	.LASF85
+ 876 049c FA050000 		.4byte	.LASF85
+ 877 04a0 0A       		.byte	0xa
+ 878 04a1 66       		.byte	0x66
+ 879 04a2 16       		.uleb128 0x16
+ 880 04a3 82000000 		.4byte	.LASF86
+ 881 04a7 82000000 		.4byte	.LASF86
+ 882 04ab 0B       		.byte	0xb
+ 883 04ac 4F       		.byte	0x4f
+ 884 04ad 16       		.uleb128 0x16
+ 885 04ae 23020000 		.4byte	.LASF87
+ 886 04b2 23020000 		.4byte	.LASF87
+ 887 04b6 09       		.byte	0x9
+ 888 04b7 63       		.byte	0x63
+ 889 04b8 16       		.uleb128 0x16
+ 890 04b9 4D050000 		.4byte	.LASF88
+ 891 04bd 4D050000 		.4byte	.LASF88
+ 892 04c1 05       		.byte	0x5
+ 893 04c2 C3       		.byte	0xc3
+ 894 04c3 16       		.uleb128 0x16
+ 895 04c4 D7010000 		.4byte	.LASF89
+ 896 04c8 D7010000 		.4byte	.LASF89
+ 897 04cc 08       		.byte	0x8
+ 898 04cd B2       		.byte	0xb2
+ 899 04ce 00       		.byte	0
+ 900              		.section	.debug_abbrev,"",%progbits
+ 901              	.Ldebug_abbrev0:
+ 902 0000 01       		.uleb128 0x1
+ 903 0001 11       		.uleb128 0x11
+ 904 0002 01       		.byte	0x1
+ 905 0003 25       		.uleb128 0x25
+ 906 0004 0E       		.uleb128 0xe
+ 907 0005 13       		.uleb128 0x13
+ 908 0006 0B       		.uleb128 0xb
+ 909 0007 03       		.uleb128 0x3
+ 910 0008 0E       		.uleb128 0xe
+ 911 0009 1B       		.uleb128 0x1b
+ 912 000a 0E       		.uleb128 0xe
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 17
+
+
+ 913 000b 55       		.uleb128 0x55
+ 914 000c 17       		.uleb128 0x17
+ 915 000d 11       		.uleb128 0x11
+ 916 000e 01       		.uleb128 0x1
+ 917 000f 10       		.uleb128 0x10
+ 918 0010 17       		.uleb128 0x17
+ 919 0011 00       		.byte	0
+ 920 0012 00       		.byte	0
+ 921 0013 02       		.uleb128 0x2
+ 922 0014 24       		.uleb128 0x24
+ 923 0015 00       		.byte	0
+ 924 0016 0B       		.uleb128 0xb
+ 925 0017 0B       		.uleb128 0xb
+ 926 0018 3E       		.uleb128 0x3e
+ 927 0019 0B       		.uleb128 0xb
+ 928 001a 03       		.uleb128 0x3
+ 929 001b 08       		.uleb128 0x8
+ 930 001c 00       		.byte	0
+ 931 001d 00       		.byte	0
+ 932 001e 03       		.uleb128 0x3
+ 933 001f 24       		.uleb128 0x24
+ 934 0020 00       		.byte	0
+ 935 0021 0B       		.uleb128 0xb
+ 936 0022 0B       		.uleb128 0xb
+ 937 0023 3E       		.uleb128 0x3e
+ 938 0024 0B       		.uleb128 0xb
+ 939 0025 03       		.uleb128 0x3
+ 940 0026 0E       		.uleb128 0xe
+ 941 0027 00       		.byte	0
+ 942 0028 00       		.byte	0
+ 943 0029 04       		.uleb128 0x4
+ 944 002a 16       		.uleb128 0x16
+ 945 002b 00       		.byte	0
+ 946 002c 03       		.uleb128 0x3
+ 947 002d 0E       		.uleb128 0xe
+ 948 002e 3A       		.uleb128 0x3a
+ 949 002f 0B       		.uleb128 0xb
+ 950 0030 3B       		.uleb128 0x3b
+ 951 0031 0B       		.uleb128 0xb
+ 952 0032 49       		.uleb128 0x49
+ 953 0033 13       		.uleb128 0x13
+ 954 0034 00       		.byte	0
+ 955 0035 00       		.byte	0
+ 956 0036 05       		.uleb128 0x5
+ 957 0037 35       		.uleb128 0x35
+ 958 0038 00       		.byte	0
+ 959 0039 49       		.uleb128 0x49
+ 960 003a 13       		.uleb128 0x13
+ 961 003b 00       		.byte	0
+ 962 003c 00       		.byte	0
+ 963 003d 06       		.uleb128 0x6
+ 964 003e 04       		.uleb128 0x4
+ 965 003f 01       		.byte	0x1
+ 966 0040 0B       		.uleb128 0xb
+ 967 0041 0B       		.uleb128 0xb
+ 968 0042 49       		.uleb128 0x49
+ 969 0043 13       		.uleb128 0x13
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 18
+
+
+ 970 0044 3A       		.uleb128 0x3a
+ 971 0045 0B       		.uleb128 0xb
+ 972 0046 3B       		.uleb128 0x3b
+ 973 0047 0B       		.uleb128 0xb
+ 974 0048 01       		.uleb128 0x1
+ 975 0049 13       		.uleb128 0x13
+ 976 004a 00       		.byte	0
+ 977 004b 00       		.byte	0
+ 978 004c 07       		.uleb128 0x7
+ 979 004d 28       		.uleb128 0x28
+ 980 004e 00       		.byte	0
+ 981 004f 03       		.uleb128 0x3
+ 982 0050 0E       		.uleb128 0xe
+ 983 0051 1C       		.uleb128 0x1c
+ 984 0052 0D       		.uleb128 0xd
+ 985 0053 00       		.byte	0
+ 986 0054 00       		.byte	0
+ 987 0055 08       		.uleb128 0x8
+ 988 0056 28       		.uleb128 0x28
+ 989 0057 00       		.byte	0
+ 990 0058 03       		.uleb128 0x3
+ 991 0059 0E       		.uleb128 0xe
+ 992 005a 1C       		.uleb128 0x1c
+ 993 005b 0B       		.uleb128 0xb
+ 994 005c 00       		.byte	0
+ 995 005d 00       		.byte	0
+ 996 005e 09       		.uleb128 0x9
+ 997 005f 2E       		.uleb128 0x2e
+ 998 0060 01       		.byte	0x1
+ 999 0061 3F       		.uleb128 0x3f
+ 1000 0062 19       		.uleb128 0x19
+ 1001 0063 03       		.uleb128 0x3
+ 1002 0064 0E       		.uleb128 0xe
+ 1003 0065 3A       		.uleb128 0x3a
+ 1004 0066 0B       		.uleb128 0xb
+ 1005 0067 3B       		.uleb128 0x3b
+ 1006 0068 0B       		.uleb128 0xb
+ 1007 0069 27       		.uleb128 0x27
+ 1008 006a 19       		.uleb128 0x19
+ 1009 006b 49       		.uleb128 0x49
+ 1010 006c 13       		.uleb128 0x13
+ 1011 006d 11       		.uleb128 0x11
+ 1012 006e 01       		.uleb128 0x1
+ 1013 006f 12       		.uleb128 0x12
+ 1014 0070 06       		.uleb128 0x6
+ 1015 0071 40       		.uleb128 0x40
+ 1016 0072 18       		.uleb128 0x18
+ 1017 0073 9742     		.uleb128 0x2117
+ 1018 0075 19       		.uleb128 0x19
+ 1019 0076 01       		.uleb128 0x1
+ 1020 0077 13       		.uleb128 0x13
+ 1021 0078 00       		.byte	0
+ 1022 0079 00       		.byte	0
+ 1023 007a 0A       		.uleb128 0xa
+ 1024 007b 05       		.uleb128 0x5
+ 1025 007c 00       		.byte	0
+ 1026 007d 03       		.uleb128 0x3
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 19
+
+
+ 1027 007e 0E       		.uleb128 0xe
+ 1028 007f 3A       		.uleb128 0x3a
+ 1029 0080 0B       		.uleb128 0xb
+ 1030 0081 3B       		.uleb128 0x3b
+ 1031 0082 0B       		.uleb128 0xb
+ 1032 0083 49       		.uleb128 0x49
+ 1033 0084 13       		.uleb128 0x13
+ 1034 0085 02       		.uleb128 0x2
+ 1035 0086 17       		.uleb128 0x17
+ 1036 0087 00       		.byte	0
+ 1037 0088 00       		.byte	0
+ 1038 0089 0B       		.uleb128 0xb
+ 1039 008a 0B       		.uleb128 0xb
+ 1040 008b 01       		.byte	0x1
+ 1041 008c 55       		.uleb128 0x55
+ 1042 008d 17       		.uleb128 0x17
+ 1043 008e 01       		.uleb128 0x1
+ 1044 008f 13       		.uleb128 0x13
+ 1045 0090 00       		.byte	0
+ 1046 0091 00       		.byte	0
+ 1047 0092 0C       		.uleb128 0xc
+ 1048 0093 34       		.uleb128 0x34
+ 1049 0094 00       		.byte	0
+ 1050 0095 03       		.uleb128 0x3
+ 1051 0096 0E       		.uleb128 0xe
+ 1052 0097 3A       		.uleb128 0x3a
+ 1053 0098 0B       		.uleb128 0xb
+ 1054 0099 3B       		.uleb128 0x3b
+ 1055 009a 0B       		.uleb128 0xb
+ 1056 009b 49       		.uleb128 0x49
+ 1057 009c 13       		.uleb128 0x13
+ 1058 009d 02       		.uleb128 0x2
+ 1059 009e 17       		.uleb128 0x17
+ 1060 009f 00       		.byte	0
+ 1061 00a0 00       		.byte	0
+ 1062 00a1 0D       		.uleb128 0xd
+ 1063 00a2 898201   		.uleb128 0x4109
+ 1064 00a5 00       		.byte	0
+ 1065 00a6 11       		.uleb128 0x11
+ 1066 00a7 01       		.uleb128 0x1
+ 1067 00a8 9542     		.uleb128 0x2115
+ 1068 00aa 19       		.uleb128 0x19
+ 1069 00ab 31       		.uleb128 0x31
+ 1070 00ac 13       		.uleb128 0x13
+ 1071 00ad 00       		.byte	0
+ 1072 00ae 00       		.byte	0
+ 1073 00af 0E       		.uleb128 0xe
+ 1074 00b0 34       		.uleb128 0x34
+ 1075 00b1 00       		.byte	0
+ 1076 00b2 03       		.uleb128 0x3
+ 1077 00b3 08       		.uleb128 0x8
+ 1078 00b4 3A       		.uleb128 0x3a
+ 1079 00b5 0B       		.uleb128 0xb
+ 1080 00b6 3B       		.uleb128 0x3b
+ 1081 00b7 0B       		.uleb128 0xb
+ 1082 00b8 49       		.uleb128 0x49
+ 1083 00b9 13       		.uleb128 0x13
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 20
+
+
+ 1084 00ba 02       		.uleb128 0x2
+ 1085 00bb 17       		.uleb128 0x17
+ 1086 00bc 00       		.byte	0
+ 1087 00bd 00       		.byte	0
+ 1088 00be 0F       		.uleb128 0xf
+ 1089 00bf 898201   		.uleb128 0x4109
+ 1090 00c2 01       		.byte	0x1
+ 1091 00c3 11       		.uleb128 0x11
+ 1092 00c4 01       		.uleb128 0x1
+ 1093 00c5 31       		.uleb128 0x31
+ 1094 00c6 13       		.uleb128 0x13
+ 1095 00c7 01       		.uleb128 0x1
+ 1096 00c8 13       		.uleb128 0x13
+ 1097 00c9 00       		.byte	0
+ 1098 00ca 00       		.byte	0
+ 1099 00cb 10       		.uleb128 0x10
+ 1100 00cc 8A8201   		.uleb128 0x410a
+ 1101 00cf 00       		.byte	0
+ 1102 00d0 02       		.uleb128 0x2
+ 1103 00d1 18       		.uleb128 0x18
+ 1104 00d2 9142     		.uleb128 0x2111
+ 1105 00d4 18       		.uleb128 0x18
+ 1106 00d5 00       		.byte	0
+ 1107 00d6 00       		.byte	0
+ 1108 00d7 11       		.uleb128 0x11
+ 1109 00d8 898201   		.uleb128 0x4109
+ 1110 00db 00       		.byte	0
+ 1111 00dc 11       		.uleb128 0x11
+ 1112 00dd 01       		.uleb128 0x1
+ 1113 00de 31       		.uleb128 0x31
+ 1114 00df 13       		.uleb128 0x13
+ 1115 00e0 00       		.byte	0
+ 1116 00e1 00       		.byte	0
+ 1117 00e2 12       		.uleb128 0x12
+ 1118 00e3 2E       		.uleb128 0x2e
+ 1119 00e4 01       		.byte	0x1
+ 1120 00e5 3F       		.uleb128 0x3f
+ 1121 00e6 19       		.uleb128 0x19
+ 1122 00e7 03       		.uleb128 0x3
+ 1123 00e8 0E       		.uleb128 0xe
+ 1124 00e9 3A       		.uleb128 0x3a
+ 1125 00ea 0B       		.uleb128 0xb
+ 1126 00eb 3B       		.uleb128 0x3b
+ 1127 00ec 0B       		.uleb128 0xb
+ 1128 00ed 27       		.uleb128 0x27
+ 1129 00ee 19       		.uleb128 0x19
+ 1130 00ef 11       		.uleb128 0x11
+ 1131 00f0 01       		.uleb128 0x1
+ 1132 00f1 12       		.uleb128 0x12
+ 1133 00f2 06       		.uleb128 0x6
+ 1134 00f3 40       		.uleb128 0x40
+ 1135 00f4 18       		.uleb128 0x18
+ 1136 00f5 9742     		.uleb128 0x2117
+ 1137 00f7 19       		.uleb128 0x19
+ 1138 00f8 01       		.uleb128 0x1
+ 1139 00f9 13       		.uleb128 0x13
+ 1140 00fa 00       		.byte	0
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 21
+
+
+ 1141 00fb 00       		.byte	0
+ 1142 00fc 13       		.uleb128 0x13
+ 1143 00fd 898201   		.uleb128 0x4109
+ 1144 0100 01       		.byte	0x1
+ 1145 0101 11       		.uleb128 0x11
+ 1146 0102 01       		.uleb128 0x1
+ 1147 0103 9542     		.uleb128 0x2115
+ 1148 0105 19       		.uleb128 0x19
+ 1149 0106 31       		.uleb128 0x31
+ 1150 0107 13       		.uleb128 0x13
+ 1151 0108 01       		.uleb128 0x1
+ 1152 0109 13       		.uleb128 0x13
+ 1153 010a 00       		.byte	0
+ 1154 010b 00       		.byte	0
+ 1155 010c 14       		.uleb128 0x14
+ 1156 010d 0B       		.uleb128 0xb
+ 1157 010e 01       		.byte	0x1
+ 1158 010f 11       		.uleb128 0x11
+ 1159 0110 01       		.uleb128 0x1
+ 1160 0111 12       		.uleb128 0x12
+ 1161 0112 06       		.uleb128 0x6
+ 1162 0113 00       		.byte	0
+ 1163 0114 00       		.byte	0
+ 1164 0115 15       		.uleb128 0x15
+ 1165 0116 34       		.uleb128 0x34
+ 1166 0117 00       		.byte	0
+ 1167 0118 03       		.uleb128 0x3
+ 1168 0119 0E       		.uleb128 0xe
+ 1169 011a 3A       		.uleb128 0x3a
+ 1170 011b 0B       		.uleb128 0xb
+ 1171 011c 3B       		.uleb128 0x3b
+ 1172 011d 05       		.uleb128 0x5
+ 1173 011e 49       		.uleb128 0x49
+ 1174 011f 13       		.uleb128 0x13
+ 1175 0120 3F       		.uleb128 0x3f
+ 1176 0121 19       		.uleb128 0x19
+ 1177 0122 3C       		.uleb128 0x3c
+ 1178 0123 19       		.uleb128 0x19
+ 1179 0124 00       		.byte	0
+ 1180 0125 00       		.byte	0
+ 1181 0126 16       		.uleb128 0x16
+ 1182 0127 2E       		.uleb128 0x2e
+ 1183 0128 00       		.byte	0
+ 1184 0129 3F       		.uleb128 0x3f
+ 1185 012a 19       		.uleb128 0x19
+ 1186 012b 3C       		.uleb128 0x3c
+ 1187 012c 19       		.uleb128 0x19
+ 1188 012d 6E       		.uleb128 0x6e
+ 1189 012e 0E       		.uleb128 0xe
+ 1190 012f 03       		.uleb128 0x3
+ 1191 0130 0E       		.uleb128 0xe
+ 1192 0131 3A       		.uleb128 0x3a
+ 1193 0132 0B       		.uleb128 0xb
+ 1194 0133 3B       		.uleb128 0x3b
+ 1195 0134 0B       		.uleb128 0xb
+ 1196 0135 00       		.byte	0
+ 1197 0136 00       		.byte	0
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 22
+
+
+ 1198 0137 00       		.byte	0
+ 1199              		.section	.debug_loc,"",%progbits
+ 1200              	.Ldebug_loc0:
+ 1201              	.LLST0:
+ 1202 0000 00000000 		.4byte	.LVL0
+ 1203 0004 08000000 		.4byte	.LVL1
+ 1204 0008 0100     		.2byte	0x1
+ 1205 000a 50       		.byte	0x50
+ 1206 000b 08000000 		.4byte	.LVL1
+ 1207 000f 0C000000 		.4byte	.LFE63
+ 1208 0013 0400     		.2byte	0x4
+ 1209 0015 F3       		.byte	0xf3
+ 1210 0016 01       		.uleb128 0x1
+ 1211 0017 50       		.byte	0x50
+ 1212 0018 9F       		.byte	0x9f
+ 1213 0019 00000000 		.4byte	0
+ 1214 001d 00000000 		.4byte	0
+ 1215              	.LLST1:
+ 1216 0021 00000000 		.4byte	.LVL2
+ 1217 0025 0E000000 		.4byte	.LVL3
+ 1218 0029 0100     		.2byte	0x1
+ 1219 002b 50       		.byte	0x50
+ 1220 002c 0E000000 		.4byte	.LVL3
+ 1221 0030 12000000 		.4byte	.LVL4
+ 1222 0034 0400     		.2byte	0x4
+ 1223 0036 F3       		.byte	0xf3
+ 1224 0037 01       		.uleb128 0x1
+ 1225 0038 50       		.byte	0x50
+ 1226 0039 9F       		.byte	0x9f
+ 1227 003a 12000000 		.4byte	.LVL4
+ 1228 003e 14000000 		.4byte	.LVL5
+ 1229 0042 0100     		.2byte	0x1
+ 1230 0044 50       		.byte	0x50
+ 1231 0045 14000000 		.4byte	.LVL5
+ 1232 0049 1C000000 		.4byte	.LVL6
+ 1233 004d 0400     		.2byte	0x4
+ 1234 004f F3       		.byte	0xf3
+ 1235 0050 01       		.uleb128 0x1
+ 1236 0051 50       		.byte	0x50
+ 1237 0052 9F       		.byte	0x9f
+ 1238 0053 1C000000 		.4byte	.LVL6
+ 1239 0057 1E000000 		.4byte	.LVL7
+ 1240 005b 0100     		.2byte	0x1
+ 1241 005d 50       		.byte	0x50
+ 1242 005e 1E000000 		.4byte	.LVL7
+ 1243 0062 54000000 		.4byte	.LVL10
+ 1244 0066 0400     		.2byte	0x4
+ 1245 0068 F3       		.byte	0xf3
+ 1246 0069 01       		.uleb128 0x1
+ 1247 006a 50       		.byte	0x50
+ 1248 006b 9F       		.byte	0x9f
+ 1249 006c 54000000 		.4byte	.LVL10
+ 1250 0070 57000000 		.4byte	.LVL11-1
+ 1251 0074 0100     		.2byte	0x1
+ 1252 0076 50       		.byte	0x50
+ 1253 0077 57000000 		.4byte	.LVL11-1
+ 1254 007b 8E000000 		.4byte	.LFE64
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 23
+
+
+ 1255 007f 0400     		.2byte	0x4
+ 1256 0081 F3       		.byte	0xf3
+ 1257 0082 01       		.uleb128 0x1
+ 1258 0083 50       		.byte	0x50
+ 1259 0084 9F       		.byte	0x9f
+ 1260 0085 00000000 		.4byte	0
+ 1261 0089 00000000 		.4byte	0
+ 1262              	.LLST2:
+ 1263 008d 12000000 		.4byte	.LVL4
+ 1264 0091 14000000 		.4byte	.LVL5
+ 1265 0095 0900     		.2byte	0x9
+ 1266 0097 70       		.byte	0x70
+ 1267 0098 00       		.sleb128 0
+ 1268 0099 48       		.byte	0x48
+ 1269 009a 24       		.byte	0x24
+ 1270 009b 48       		.byte	0x48
+ 1271 009c 26       		.byte	0x26
+ 1272 009d 44       		.byte	0x44
+ 1273 009e 1C       		.byte	0x1c
+ 1274 009f 9F       		.byte	0x9f
+ 1275 00a0 14000000 		.4byte	.LVL5
+ 1276 00a4 1C000000 		.4byte	.LVL6
+ 1277 00a8 0A00     		.2byte	0xa
+ 1278 00aa F3       		.byte	0xf3
+ 1279 00ab 01       		.uleb128 0x1
+ 1280 00ac 50       		.byte	0x50
+ 1281 00ad 48       		.byte	0x48
+ 1282 00ae 24       		.byte	0x24
+ 1283 00af 48       		.byte	0x48
+ 1284 00b0 26       		.byte	0x26
+ 1285 00b1 44       		.byte	0x44
+ 1286 00b2 1C       		.byte	0x1c
+ 1287 00b3 9F       		.byte	0x9f
+ 1288 00b4 00000000 		.4byte	0
+ 1289 00b8 00000000 		.4byte	0
+ 1290              	.LLST3:
+ 1291 00bc 68000000 		.4byte	.LVL15
+ 1292 00c0 71000000 		.4byte	.LVL17-1
+ 1293 00c4 0100     		.2byte	0x1
+ 1294 00c6 50       		.byte	0x50
+ 1295 00c7 78000000 		.4byte	.LVL18
+ 1296 00cb 7A000000 		.4byte	.LVL19
+ 1297 00cf 0100     		.2byte	0x1
+ 1298 00d1 50       		.byte	0x50
+ 1299 00d2 86000000 		.4byte	.LVL22
+ 1300 00d6 88000000 		.4byte	.LVL23
+ 1301 00da 0100     		.2byte	0x1
+ 1302 00dc 50       		.byte	0x50
+ 1303 00dd 00000000 		.4byte	0
+ 1304 00e1 00000000 		.4byte	0
+ 1305              	.LLST4:
+ 1306 00e5 1E000000 		.4byte	.LVL7
+ 1307 00e9 25000000 		.4byte	.LVL8-1
+ 1308 00ed 0100     		.2byte	0x1
+ 1309 00ef 50       		.byte	0x50
+ 1310 00f0 25000000 		.4byte	.LVL8-1
+ 1311 00f4 54000000 		.4byte	.LVL10
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 24
+
+
+ 1312 00f8 0100     		.2byte	0x1
+ 1313 00fa 54       		.byte	0x54
+ 1314 00fb 5A000000 		.4byte	.LVL12
+ 1315 00ff 6C000000 		.4byte	.LVL16
+ 1316 0103 0100     		.2byte	0x1
+ 1317 0105 54       		.byte	0x54
+ 1318 0106 72000000 		.4byte	.LVL17
+ 1319 010a 8E000000 		.4byte	.LFE64
+ 1320 010e 0100     		.2byte	0x1
+ 1321 0110 54       		.byte	0x54
+ 1322 0111 00000000 		.4byte	0
+ 1323 0115 00000000 		.4byte	0
+ 1324              	.LLST5:
+ 1325 0119 26000000 		.4byte	.LVL8
+ 1326 011d 28000000 		.4byte	.LVL9
+ 1327 0121 0100     		.2byte	0x1
+ 1328 0123 50       		.byte	0x50
+ 1329 0124 00000000 		.4byte	0
+ 1330 0128 00000000 		.4byte	0
+ 1331              	.LLST6:
+ 1332 012c 00000000 		.4byte	.LVL25
+ 1333 0130 18000000 		.4byte	.LVL27
+ 1334 0134 0100     		.2byte	0x1
+ 1335 0136 50       		.byte	0x50
+ 1336 0137 18000000 		.4byte	.LVL27
+ 1337 013b 28000000 		.4byte	.LVL29
+ 1338 013f 0400     		.2byte	0x4
+ 1339 0141 F3       		.byte	0xf3
+ 1340 0142 01       		.uleb128 0x1
+ 1341 0143 50       		.byte	0x50
+ 1342 0144 9F       		.byte	0x9f
+ 1343 0145 28000000 		.4byte	.LVL29
+ 1344 0149 2A000000 		.4byte	.LVL30
+ 1345 014d 0100     		.2byte	0x1
+ 1346 014f 50       		.byte	0x50
+ 1347 0150 2A000000 		.4byte	.LVL30
+ 1348 0154 4C000000 		.4byte	.LFE65
+ 1349 0158 0400     		.2byte	0x4
+ 1350 015a F3       		.byte	0xf3
+ 1351 015b 01       		.uleb128 0x1
+ 1352 015c 50       		.byte	0x50
+ 1353 015d 9F       		.byte	0x9f
+ 1354 015e 00000000 		.4byte	0
+ 1355 0162 00000000 		.4byte	0
+ 1356              	.LLST7:
+ 1357 0166 00000000 		.4byte	.LVL25
+ 1358 016a 1D000000 		.4byte	.LVL28-1
+ 1359 016e 0100     		.2byte	0x1
+ 1360 0170 51       		.byte	0x51
+ 1361 0171 1D000000 		.4byte	.LVL28-1
+ 1362 0175 28000000 		.4byte	.LVL29
+ 1363 0179 0100     		.2byte	0x1
+ 1364 017b 55       		.byte	0x55
+ 1365 017c 28000000 		.4byte	.LVL29
+ 1366 0180 2D000000 		.4byte	.LVL31-1
+ 1367 0184 0100     		.2byte	0x1
+ 1368 0186 51       		.byte	0x51
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 25
+
+
+ 1369 0187 2D000000 		.4byte	.LVL31-1
+ 1370 018b 2E000000 		.4byte	.LVL31
+ 1371 018f 0400     		.2byte	0x4
+ 1372 0191 F3       		.byte	0xf3
+ 1373 0192 01       		.uleb128 0x1
+ 1374 0193 51       		.byte	0x51
+ 1375 0194 9F       		.byte	0x9f
+ 1376 0195 2E000000 		.4byte	.LVL31
+ 1377 0199 3A000000 		.4byte	.LVL34
+ 1378 019d 0100     		.2byte	0x1
+ 1379 019f 55       		.byte	0x55
+ 1380 01a0 3A000000 		.4byte	.LVL34
+ 1381 01a4 3F000000 		.4byte	.LVL35-1
+ 1382 01a8 0100     		.2byte	0x1
+ 1383 01aa 51       		.byte	0x51
+ 1384 01ab 3F000000 		.4byte	.LVL35-1
+ 1385 01af 40000000 		.4byte	.LVL35
+ 1386 01b3 0400     		.2byte	0x4
+ 1387 01b5 F3       		.byte	0xf3
+ 1388 01b6 01       		.uleb128 0x1
+ 1389 01b7 51       		.byte	0x51
+ 1390 01b8 9F       		.byte	0x9f
+ 1391 01b9 40000000 		.4byte	.LVL35
+ 1392 01bd 48000000 		.4byte	.LVL37
+ 1393 01c1 0100     		.2byte	0x1
+ 1394 01c3 55       		.byte	0x55
+ 1395 01c4 48000000 		.4byte	.LVL37
+ 1396 01c8 4C000000 		.4byte	.LFE65
+ 1397 01cc 0400     		.2byte	0x4
+ 1398 01ce F3       		.byte	0xf3
+ 1399 01cf 01       		.uleb128 0x1
+ 1400 01d0 51       		.byte	0x51
+ 1401 01d1 9F       		.byte	0x9f
+ 1402 01d2 00000000 		.4byte	0
+ 1403 01d6 00000000 		.4byte	0
+ 1404              	.LLST8:
+ 1405 01da 34000000 		.4byte	.LVL33
+ 1406 01de 3F000000 		.4byte	.LVL35-1
+ 1407 01e2 0100     		.2byte	0x1
+ 1408 01e4 50       		.byte	0x50
+ 1409 01e5 00000000 		.4byte	0
+ 1410 01e9 00000000 		.4byte	0
+ 1411              	.LLST9:
+ 1412 01ed 14000000 		.4byte	.LVL26
+ 1413 01f1 28000000 		.4byte	.LVL29
+ 1414 01f5 0100     		.2byte	0x1
+ 1415 01f7 54       		.byte	0x54
+ 1416 01f8 2E000000 		.4byte	.LVL31
+ 1417 01fc 3A000000 		.4byte	.LVL34
+ 1418 0200 0100     		.2byte	0x1
+ 1419 0202 54       		.byte	0x54
+ 1420 0203 40000000 		.4byte	.LVL35
+ 1421 0207 48000000 		.4byte	.LVL37
+ 1422 020b 0100     		.2byte	0x1
+ 1423 020d 54       		.byte	0x54
+ 1424 020e 48000000 		.4byte	.LVL37
+ 1425 0212 4B000000 		.4byte	.LVL38-1
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 26
+
+
+ 1426 0216 0100     		.2byte	0x1
+ 1427 0218 50       		.byte	0x50
+ 1428 0219 00000000 		.4byte	0
+ 1429 021d 00000000 		.4byte	0
+ 1430              	.LLST10:
+ 1431 0221 1E000000 		.4byte	.LVL28
+ 1432 0225 28000000 		.4byte	.LVL29
+ 1433 0229 0100     		.2byte	0x1
+ 1434 022b 50       		.byte	0x50
+ 1435 022c 2E000000 		.4byte	.LVL31
+ 1436 0230 30000000 		.4byte	.LVL32
+ 1437 0234 0100     		.2byte	0x1
+ 1438 0236 50       		.byte	0x50
+ 1439 0237 40000000 		.4byte	.LVL35
+ 1440 023b 44000000 		.4byte	.LVL36
+ 1441 023f 0100     		.2byte	0x1
+ 1442 0241 50       		.byte	0x50
+ 1443 0242 00000000 		.4byte	0
+ 1444 0246 00000000 		.4byte	0
+ 1445              	.LLST11:
+ 1446 024a 28000000 		.4byte	.LVL29
+ 1447 024e 2A000000 		.4byte	.LVL30
+ 1448 0252 0900     		.2byte	0x9
+ 1449 0254 70       		.byte	0x70
+ 1450 0255 00       		.sleb128 0
+ 1451 0256 48       		.byte	0x48
+ 1452 0257 24       		.byte	0x24
+ 1453 0258 48       		.byte	0x48
+ 1454 0259 26       		.byte	0x26
+ 1455 025a 44       		.byte	0x44
+ 1456 025b 1C       		.byte	0x1c
+ 1457 025c 9F       		.byte	0x9f
+ 1458 025d 2A000000 		.4byte	.LVL30
+ 1459 0261 2E000000 		.4byte	.LVL31
+ 1460 0265 0A00     		.2byte	0xa
+ 1461 0267 F3       		.byte	0xf3
+ 1462 0268 01       		.uleb128 0x1
+ 1463 0269 50       		.byte	0x50
+ 1464 026a 48       		.byte	0x48
+ 1465 026b 24       		.byte	0x24
+ 1466 026c 48       		.byte	0x48
+ 1467 026d 26       		.byte	0x26
+ 1468 026e 44       		.byte	0x44
+ 1469 026f 1C       		.byte	0x1c
+ 1470 0270 9F       		.byte	0x9f
+ 1471 0271 00000000 		.4byte	0
+ 1472 0275 00000000 		.4byte	0
+ 1473              		.section	.debug_aranges,"",%progbits
+ 1474 0000 2C000000 		.4byte	0x2c
+ 1475 0004 0200     		.2byte	0x2
+ 1476 0006 00000000 		.4byte	.Ldebug_info0
+ 1477 000a 04       		.byte	0x4
+ 1478 000b 00       		.byte	0
+ 1479 000c 0000     		.2byte	0
+ 1480 000e 0000     		.2byte	0
+ 1481 0010 00000000 		.4byte	.LFB63
+ 1482 0014 0C000000 		.4byte	.LFE63-.LFB63
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 27
+
+
+ 1483 0018 00000000 		.4byte	.LFB64
+ 1484 001c 8E000000 		.4byte	.LFE64-.LFB64
+ 1485 0020 00000000 		.4byte	.LFB65
+ 1486 0024 4C000000 		.4byte	.LFE65-.LFB65
+ 1487 0028 00000000 		.4byte	0
+ 1488 002c 00000000 		.4byte	0
+ 1489              		.section	.debug_ranges,"",%progbits
+ 1490              	.Ldebug_ranges0:
+ 1491 0000 12000000 		.4byte	.LBB2
+ 1492 0004 14000000 		.4byte	.LBE2
+ 1493 0008 18000000 		.4byte	.LBB3
+ 1494 000c 1C000000 		.4byte	.LBE3
+ 1495 0010 00000000 		.4byte	0
+ 1496 0014 00000000 		.4byte	0
+ 1497 0018 1C000000 		.4byte	.LBB4
+ 1498 001c 54000000 		.4byte	.LBE4
+ 1499 0020 5A000000 		.4byte	.LBB5
+ 1500 0024 68000000 		.4byte	.LBE5
+ 1501 0028 6C000000 		.4byte	.LBB6
+ 1502 002c 8E000000 		.4byte	.LBE6
+ 1503 0030 00000000 		.4byte	0
+ 1504 0034 00000000 		.4byte	0
+ 1505 0038 10000000 		.4byte	.LBB7
+ 1506 003c 28000000 		.4byte	.LBE7
+ 1507 0040 2E000000 		.4byte	.LBB9
+ 1508 0044 36000000 		.4byte	.LBE9
+ 1509 0048 3A000000 		.4byte	.LBB10
+ 1510 004c 44000000 		.4byte	.LBE10
+ 1511 0050 48000000 		.4byte	.LBB11
+ 1512 0054 4C000000 		.4byte	.LBE11
+ 1513 0058 00000000 		.4byte	0
+ 1514 005c 00000000 		.4byte	0
+ 1515 0060 00000000 		.4byte	.LFB63
+ 1516 0064 0C000000 		.4byte	.LFE63
+ 1517 0068 00000000 		.4byte	.LFB64
+ 1518 006c 8E000000 		.4byte	.LFE64
+ 1519 0070 00000000 		.4byte	.LFB65
+ 1520 0074 4C000000 		.4byte	.LFE65
+ 1521 0078 00000000 		.4byte	0
+ 1522 007c 00000000 		.4byte	0
+ 1523              		.section	.debug_line,"",%progbits
+ 1524              	.Ldebug_line0:
+ 1525 0000 38020000 		.section	.debug_str,"MS",%progbits,1
+ 1525      0200C001 
+ 1525      00000201 
+ 1525      FB0E0D00 
+ 1525      01010101 
+ 1526              	.LASF39:
+ 1527 0000 6B566578 		.ascii	"kVexSensorIME\000"
+ 1527      53656E73 
+ 1527      6F72494D 
+ 1527      4500
+ 1528              	.LASF18:
+ 1529 000e 6B566578 		.ascii	"kVexDigital_None\000"
+ 1529      44696769 
+ 1529      74616C5F 
+ 1529      4E6F6E65 
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 28
+
+
+ 1529      00
+ 1530              	.LASF81:
+ 1531 001f 76657844 		.ascii	"vexDigitalPinGet\000"
+ 1531      69676974 
+ 1531      616C5069 
+ 1531      6E476574 
+ 1531      00
+ 1532              	.LASF82:
+ 1533 0030 76657844 		.ascii	"vexDigitalChannelGet\000"
+ 1533      69676974 
+ 1533      616C4368 
+ 1533      616E6E65 
+ 1533      6C476574 
+ 1534              	.LASF61:
+ 1535 0045 6B566578 		.ascii	"kVexSensorDigital_10\000"
+ 1535      53656E73 
+ 1535      6F724469 
+ 1535      67697461 
+ 1535      6C5F3130 
+ 1536              	.LASF62:
+ 1537 005a 6B566578 		.ascii	"kVexSensorDigital_11\000"
+ 1537      53656E73 
+ 1537      6F724469 
+ 1537      67697461 
+ 1537      6C5F3131 
+ 1538              	.LASF5:
+ 1539 006f 73686F72 		.ascii	"short int\000"
+ 1539      7420696E 
+ 1539      7400
+ 1540              	.LASF16:
+ 1541 0079 73697A65 		.ascii	"sizetype\000"
+ 1541      74797065 
+ 1541      00
+ 1542              	.LASF86:
+ 1543 0082 76657841 		.ascii	"vexAdcGet\000"
+ 1543      64634765 
+ 1543      7400
+ 1544              	.LASF93:
+ 1545 008c 76657853 		.ascii	"vexSensorValueSet\000"
+ 1545      656E736F 
+ 1545      7256616C 
+ 1545      75655365 
+ 1545      7400
+ 1546              	.LASF92:
+ 1547 009e 2F557365 		.ascii	"/Users/gherlein/herlein/src/vex/Convex-Examples/Squ"
+ 1547      72732F67 
+ 1547      6865726C 
+ 1547      65696E2F 
+ 1547      6865726C 
+ 1548 00d1 61726542 		.ascii	"areBot\000"
+ 1548      6F7400
+ 1549              	.LASF84:
+ 1550 00d8 76657853 		.ascii	"vexSonarGetInch\000"
+ 1550      6F6E6172 
+ 1550      47657449 
+ 1550      6E636800 
+ 1551              	.LASF78:
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 29
+
+
+ 1552 00e8 76616C75 		.ascii	"value\000"
+ 1552      6500
+ 1553              	.LASF66:
+ 1554 00ee 6B566578 		.ascii	"kVexSensorIme_3\000"
+ 1554      53656E73 
+ 1554      6F72496D 
+ 1554      655F3300 
+ 1555              	.LASF40:
+ 1556 00fe 6B566578 		.ascii	"kVexSensorPotentiometer\000"
+ 1556      53656E73 
+ 1556      6F72506F 
+ 1556      74656E74 
+ 1556      696F6D65 
+ 1557              	.LASF75:
+ 1558 0116 73656E73 		.ascii	"sensor\000"
+ 1558      6F7200
+ 1559              	.LASF64:
+ 1560 011d 6B566578 		.ascii	"kVexSensorIme_1\000"
+ 1560      53656E73 
+ 1560      6F72496D 
+ 1560      655F3100 
+ 1561              	.LASF65:
+ 1562 012d 6B566578 		.ascii	"kVexSensorIme_2\000"
+ 1562      53656E73 
+ 1562      6F72496D 
+ 1562      655F3200 
+ 1563              	.LASF28:
+ 1564 013d 6B566578 		.ascii	"kVexDigital_10\000"
+ 1564      44696769 
+ 1564      74616C5F 
+ 1564      313000
+ 1565              	.LASF29:
+ 1566 014c 6B566578 		.ascii	"kVexDigital_11\000"
+ 1566      44696769 
+ 1566      74616C5F 
+ 1566      313100
+ 1567              	.LASF30:
+ 1568 015b 6B566578 		.ascii	"kVexDigital_12\000"
+ 1568      44696769 
+ 1568      74616C5F 
+ 1568      313200
+ 1569              	.LASF69:
+ 1570 016a 6B566578 		.ascii	"kVexSensorIme_6\000"
+ 1570      53656E73 
+ 1570      6F72496D 
+ 1570      655F3600 
+ 1571              	.LASF70:
+ 1572 017a 6B566578 		.ascii	"kVexSensorIme_7\000"
+ 1572      53656E73 
+ 1572      6F72496D 
+ 1572      655F3700 
+ 1573              	.LASF71:
+ 1574 018a 6B566578 		.ascii	"kVexSensorIme_8\000"
+ 1574      53656E73 
+ 1574      6F72496D 
+ 1574      655F3800 
+ 1575              	.LASF37:
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 30
+
+
+ 1576 019a 6B566578 		.ascii	"kVexSensorSonarCm\000"
+ 1576      53656E73 
+ 1576      6F72536F 
+ 1576      6E617243 
+ 1576      6D00
+ 1577              	.LASF76:
+ 1578 01ac 6368616E 		.ascii	"chan\000"
+ 1578      00
+ 1579              	.LASF1:
+ 1580 01b1 6C6F6E67 		.ascii	"long long int\000"
+ 1580      206C6F6E 
+ 1580      6720696E 
+ 1580      7400
+ 1581              	.LASF33:
+ 1582 01bf 6B566578 		.ascii	"kVexSensorNone\000"
+ 1582      53656E73 
+ 1582      6F724E6F 
+ 1582      6E6500
+ 1583              	.LASF9:
+ 1584 01ce 6C6F6E67 		.ascii	"long int\000"
+ 1584      20696E74 
+ 1584      00
+ 1585              	.LASF89:
+ 1586 01d7 76657849 		.ascii	"vexImeSetCount\000"
+ 1586      6D655365 
+ 1586      74436F75 
+ 1586      6E7400
+ 1587              	.LASF41:
+ 1588 01e6 6B566578 		.ascii	"kVexSensorInterrupt\000"
+ 1588      53656E73 
+ 1588      6F72496E 
+ 1588      74657272 
+ 1588      75707400 
+ 1589              	.LASF2:
+ 1590 01fa 6C6F6E67 		.ascii	"long double\000"
+ 1590      20646F75 
+ 1590      626C6500 
+ 1591              	.LASF42:
+ 1592 0206 74566578 		.ascii	"tVexSensorType\000"
+ 1592      53656E73 
+ 1592      6F725479 
+ 1592      706500
+ 1593              	.LASF4:
+ 1594 0215 756E7369 		.ascii	"unsigned char\000"
+ 1594      676E6564 
+ 1594      20636861 
+ 1594      7200
+ 1595              	.LASF87:
+ 1596 0223 76657845 		.ascii	"vexEncoderSet\000"
+ 1596      6E636F64 
+ 1596      65725365 
+ 1596      7400
+ 1597              	.LASF3:
+ 1598 0231 7369676E 		.ascii	"signed char\000"
+ 1598      65642063 
+ 1598      68617200 
+ 1599              	.LASF11:
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 31
+
+
+ 1600 023d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1600      206C6F6E 
+ 1600      6720756E 
+ 1600      7369676E 
+ 1600      65642069 
+ 1601              	.LASF77:
+ 1602 0254 74797065 		.ascii	"type\000"
+ 1602      00
+ 1603              	.LASF74:
+ 1604 0259 76657853 		.ascii	"vexSensorValueGet\000"
+ 1604      656E736F 
+ 1604      7256616C 
+ 1604      75654765 
+ 1604      7400
+ 1605              	.LASF21:
+ 1606 026b 6B566578 		.ascii	"kVexDigital_3\000"
+ 1606      44696769 
+ 1606      74616C5F 
+ 1606      3300
+ 1607              	.LASF91:
+ 1608 0279 2E2E2F2E 		.ascii	"../../convex/convex/cortex/fw/vexsensor.c\000"
+ 1608      2E2F636F 
+ 1608      6E766578 
+ 1608      2F636F6E 
+ 1608      7665782F 
+ 1609              	.LASF80:
+ 1610 02a3 76657844 		.ascii	"vexDigitalTypeGet\000"
+ 1610      69676974 
+ 1610      616C5479 
+ 1610      70654765 
+ 1610      7400
+ 1611              	.LASF90:
+ 1612 02b5 474E5520 		.ascii	"GNU C11 5.2.1 20151202 (release) [ARM/embedded-5-br"
+ 1612      43313120 
+ 1612      352E322E 
+ 1612      31203230 
+ 1612      31353132 
+ 1613 02e8 616E6368 		.ascii	"anch revision 231848] -mcpu=cortex-m3 -mno-thumb-in"
+ 1613      20726576 
+ 1613      6973696F 
+ 1613      6E203233 
+ 1613      31383438 
+ 1614 031b 74657277 		.ascii	"terwork -mthumb -ggdb -O2 -fomit-frame-pointer -fal"
+ 1614      6F726B20 
+ 1614      2D6D7468 
+ 1614      756D6220 
+ 1614      2D676764 
+ 1615 034e 69676E2D 		.ascii	"ign-functions=16 -ffunction-sections -fdata-section"
+ 1615      66756E63 
+ 1615      74696F6E 
+ 1615      733D3136 
+ 1615      202D6666 
+ 1616 0381 73202D66 		.ascii	"s -fno-common\000"
+ 1616      6E6F2D63 
+ 1616      6F6D6D6F 
+ 1616      6E00
+ 1617              	.LASF72:
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 32
+
+
+ 1618 038f 74566578 		.ascii	"tVexSensors\000"
+ 1618      53656E73 
+ 1618      6F727300 
+ 1619              	.LASF17:
+ 1620 039b 63686172 		.ascii	"char\000"
+ 1620      00
+ 1621              	.LASF35:
+ 1622 03a0 6B566578 		.ascii	"kVexSensorDigitalOutput\000"
+ 1622      53656E73 
+ 1622      6F724469 
+ 1622      67697461 
+ 1622      6C4F7574 
+ 1623              	.LASF19:
+ 1624 03b8 6B566578 		.ascii	"kVexDigital_1\000"
+ 1624      44696769 
+ 1624      74616C5F 
+ 1624      3100
+ 1625              	.LASF20:
+ 1626 03c6 6B566578 		.ascii	"kVexDigital_2\000"
+ 1626      44696769 
+ 1626      74616C5F 
+ 1626      3200
+ 1627              	.LASF13:
+ 1628 03d4 696E7433 		.ascii	"int32_t\000"
+ 1628      325F7400 
+ 1629              	.LASF22:
+ 1630 03dc 6B566578 		.ascii	"kVexDigital_4\000"
+ 1630      44696769 
+ 1630      74616C5F 
+ 1630      3400
+ 1631              	.LASF23:
+ 1632 03ea 6B566578 		.ascii	"kVexDigital_5\000"
+ 1632      44696769 
+ 1632      74616C5F 
+ 1632      3500
+ 1633              	.LASF24:
+ 1634 03f8 6B566578 		.ascii	"kVexDigital_6\000"
+ 1634      44696769 
+ 1634      74616C5F 
+ 1634      3600
+ 1635              	.LASF25:
+ 1636 0406 6B566578 		.ascii	"kVexDigital_7\000"
+ 1636      44696769 
+ 1636      74616C5F 
+ 1636      3700
+ 1637              	.LASF26:
+ 1638 0414 6B566578 		.ascii	"kVexDigital_8\000"
+ 1638      44696769 
+ 1638      74616C5F 
+ 1638      3800
+ 1639              	.LASF27:
+ 1640 0422 6B566578 		.ascii	"kVexDigital_9\000"
+ 1640      44696769 
+ 1640      74616C5F 
+ 1640      3900
+ 1641              	.LASF15:
+ 1642 0430 5F426F6F 		.ascii	"_Bool\000"
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 33
+
+
+ 1642      6C00
+ 1643              	.LASF67:
+ 1644 0436 6B566578 		.ascii	"kVexSensorIme_4\000"
+ 1644      53656E73 
+ 1644      6F72496D 
+ 1644      655F3400 
+ 1645              	.LASF34:
+ 1646 0446 6B566578 		.ascii	"kVexSensorDigitalInput\000"
+ 1646      53656E73 
+ 1646      6F724469 
+ 1646      67697461 
+ 1646      6C496E70 
+ 1647              	.LASF44:
+ 1648 045d 6B566578 		.ascii	"kVexSensorAnalog_1\000"
+ 1648      53656E73 
+ 1648      6F72416E 
+ 1648      616C6F67 
+ 1648      5F3100
+ 1649              	.LASF45:
+ 1650 0470 6B566578 		.ascii	"kVexSensorAnalog_2\000"
+ 1650      53656E73 
+ 1650      6F72416E 
+ 1650      616C6F67 
+ 1650      5F3200
+ 1651              	.LASF46:
+ 1652 0483 6B566578 		.ascii	"kVexSensorAnalog_3\000"
+ 1652      53656E73 
+ 1652      6F72416E 
+ 1652      616C6F67 
+ 1652      5F3300
+ 1653              	.LASF47:
+ 1654 0496 6B566578 		.ascii	"kVexSensorAnalog_4\000"
+ 1654      53656E73 
+ 1654      6F72416E 
+ 1654      616C6F67 
+ 1654      5F3400
+ 1655              	.LASF48:
+ 1656 04a9 6B566578 		.ascii	"kVexSensorAnalog_5\000"
+ 1656      53656E73 
+ 1656      6F72416E 
+ 1656      616C6F67 
+ 1656      5F3500
+ 1657              	.LASF49:
+ 1658 04bc 6B566578 		.ascii	"kVexSensorAnalog_6\000"
+ 1658      53656E73 
+ 1658      6F72416E 
+ 1658      616C6F67 
+ 1658      5F3600
+ 1659              	.LASF50:
+ 1660 04cf 6B566578 		.ascii	"kVexSensorAnalog_7\000"
+ 1660      53656E73 
+ 1660      6F72416E 
+ 1660      616C6F67 
+ 1660      5F3700
+ 1661              	.LASF51:
+ 1662 04e2 6B566578 		.ascii	"kVexSensorAnalog_8\000"
+ 1662      53656E73 
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 34
+
+
+ 1662      6F72416E 
+ 1662      616C6F67 
+ 1662      5F3800
+ 1663              	.LASF10:
+ 1664 04f5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1664      20756E73 
+ 1664      69676E65 
+ 1664      6420696E 
+ 1664      7400
+ 1665              	.LASF68:
+ 1666 0507 6B566578 		.ascii	"kVexSensorIme_5\000"
+ 1666      53656E73 
+ 1666      6F72496D 
+ 1666      655F3500 
+ 1667              	.LASF79:
+ 1668 0517 76657849 		.ascii	"vexImeGetCount\000"
+ 1668      6D654765 
+ 1668      74436F75 
+ 1668      6E7400
+ 1669              	.LASF6:
+ 1670 0526 73686F72 		.ascii	"short unsigned int\000"
+ 1670      7420756E 
+ 1670      7369676E 
+ 1670      65642069 
+ 1670      6E7400
+ 1671              	.LASF38:
+ 1672 0539 6B566578 		.ascii	"kVexSensorSonarInch\000"
+ 1672      53656E73 
+ 1672      6F72536F 
+ 1672      6E617249 
+ 1672      6E636800 
+ 1673              	.LASF88:
+ 1674 054d 76657844 		.ascii	"vexDigitalPinSet\000"
+ 1674      69676974 
+ 1674      616C5069 
+ 1674      6E536574 
+ 1674      00
+ 1675              	.LASF8:
+ 1676 055e 5F5F696E 		.ascii	"__int32_t\000"
+ 1676      7433325F 
+ 1676      7400
+ 1677              	.LASF36:
+ 1678 0568 6B566578 		.ascii	"kVexSensorQuadEncoder\000"
+ 1678      53656E73 
+ 1678      6F725175 
+ 1678      6164456E 
+ 1678      636F6465 
+ 1679              	.LASF63:
+ 1680 057e 6B566578 		.ascii	"kVexSensorDigital_12\000"
+ 1680      53656E73 
+ 1680      6F724469 
+ 1680      67697461 
+ 1680      6C5F3132 
+ 1681              	.LASF7:
+ 1682 0593 5F5F696E 		.ascii	"__int16_t\000"
+ 1682      7431365F 
+ 1682      7400
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 35
+
+
+ 1683              	.LASF31:
+ 1684 059d 6B566578 		.ascii	"kVexDigital_Num\000"
+ 1684      44696769 
+ 1684      74616C5F 
+ 1684      4E756D00 
+ 1685              	.LASF83:
+ 1686 05ad 76657845 		.ascii	"vexEncoderGet\000"
+ 1686      6E636F64 
+ 1686      65724765 
+ 1686      7400
+ 1687              	.LASF32:
+ 1688 05bb 74566578 		.ascii	"tVexDigitalPin\000"
+ 1688      44696769 
+ 1688      74616C50 
+ 1688      696E00
+ 1689              	.LASF12:
+ 1690 05ca 696E7431 		.ascii	"int16_t\000"
+ 1690      365F7400 
+ 1691              	.LASF14:
+ 1692 05d2 626F6F6C 		.ascii	"bool_t\000"
+ 1692      5F7400
+ 1693              	.LASF43:
+ 1694 05d9 6B566578 		.ascii	"kVexSensorUndefined\000"
+ 1694      53656E73 
+ 1694      6F72556E 
+ 1694      64656669 
+ 1694      6E656400 
+ 1695              	.LASF94:
+ 1696 05ed 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1696      52784275 
+ 1696      66666572 
+ 1696      00
+ 1697              	.LASF85:
+ 1698 05fa 76657853 		.ascii	"vexSonarGetCm\000"
+ 1698      6F6E6172 
+ 1698      47657443 
+ 1698      6D00
+ 1699              	.LASF0:
+ 1700 0608 756E7369 		.ascii	"unsigned int\000"
+ 1700      676E6564 
+ 1700      20696E74 
+ 1700      00
+ 1701              	.LASF52:
+ 1702 0615 6B566578 		.ascii	"kVexSensorDigital_1\000"
+ 1702      53656E73 
+ 1702      6F724469 
+ 1702      67697461 
+ 1702      6C5F3100 
+ 1703              	.LASF53:
+ 1704 0629 6B566578 		.ascii	"kVexSensorDigital_2\000"
+ 1704      53656E73 
+ 1704      6F724469 
+ 1704      67697461 
+ 1704      6C5F3200 
+ 1705              	.LASF54:
+ 1706 063d 6B566578 		.ascii	"kVexSensorDigital_3\000"
+ 1706      53656E73 
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 36
+
+
+ 1706      6F724469 
+ 1706      67697461 
+ 1706      6C5F3300 
+ 1707              	.LASF55:
+ 1708 0651 6B566578 		.ascii	"kVexSensorDigital_4\000"
+ 1708      53656E73 
+ 1708      6F724469 
+ 1708      67697461 
+ 1708      6C5F3400 
+ 1709              	.LASF56:
+ 1710 0665 6B566578 		.ascii	"kVexSensorDigital_5\000"
+ 1710      53656E73 
+ 1710      6F724469 
+ 1710      67697461 
+ 1710      6C5F3500 
+ 1711              	.LASF57:
+ 1712 0679 6B566578 		.ascii	"kVexSensorDigital_6\000"
+ 1712      53656E73 
+ 1712      6F724469 
+ 1712      67697461 
+ 1712      6C5F3600 
+ 1713              	.LASF58:
+ 1714 068d 6B566578 		.ascii	"kVexSensorDigital_7\000"
+ 1714      53656E73 
+ 1714      6F724469 
+ 1714      67697461 
+ 1714      6C5F3700 
+ 1715              	.LASF59:
+ 1716 06a1 6B566578 		.ascii	"kVexSensorDigital_8\000"
+ 1716      53656E73 
+ 1716      6F724469 
+ 1716      67697461 
+ 1716      6C5F3800 
+ 1717              	.LASF60:
+ 1718 06b5 6B566578 		.ascii	"kVexSensorDigital_9\000"
+ 1718      53656E73 
+ 1718      6F724469 
+ 1718      67697461 
+ 1718      6C5F3900 
+ 1719              	.LASF73:
+ 1720 06c9 76657853 		.ascii	"vexSensorIsAnalog\000"
+ 1720      656E736F 
+ 1720      72497341 
+ 1720      6E616C6F 
+ 1720      6700
+ 1721              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.2.1 20151202 (release) [ARM/embedded-5-bran
+ARM GAS  /var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s 			page 37
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 vexsensor.c
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:20     .text.vexSensorIsAnalog:0000000000000000 $t
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:26     .text.vexSensorIsAnalog:0000000000000000 vexSensorIsAnalog
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:47     .text.vexSensorValueGet:0000000000000000 $t
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:53     .text.vexSensorValueGet:0000000000000000 vexSensorValueGet
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:119    .text.vexSensorValueGet:0000000000000034 $d
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:128    .text.vexSensorValueGet:0000000000000054 $t
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:191    .text.vexSensorValueSet:0000000000000000 $t
+/var/folders/vt/qg0v_q5n5k99pnp_yg24c7s80000gn/T//ccb0Rb4N.s:197    .text.vexSensorValueSet:0000000000000000 vexSensorValueSet
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+vexImeGetCount
+vexDigitalTypeGet
+vexAdcGet
+vexDigitalPinGet
+vexDigitalChannelGet
+vexEncoderGet
+vexSonarGetInch
+vexSonarGetCm
+vexImeSetCount
+vexEncoderSet
+vexDigitalPinSet

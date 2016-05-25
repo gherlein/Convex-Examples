@@ -171,9 +171,27 @@ vexCortexDefaultDriver(void)
   while( !chThdShouldTerminate() )
   {
 
+
+#ifdef RUN_MOTORS_AVG
+		// Controller 1/2, Stick L/R, Axis X/Y
+        int C1LX = GetJoystickAnalog(1, 4);
+        int C1LY = GetJoystickAnalog(1, 3);
+        int C1RX = GetJoystickAnalog(1, 1);
+    
+        // Y component, X component, Rotation
+        SetMotor(LeftFront, -C1LX - C1RX); // Front
+        SetMotor(LeftBack, -C1LY - C1RX); // Left
+        SetMotor(RightFront,C1LY - C1RX); // Right
+        SetMotor(RightBack,  C1LX - C1RX); // Back
+
+        // Motor values can only be updated every 20ms
+        Wait(20);
+
+#endif    
+
+#ifdef RUN_MOTORS_TRIG
     getJoystickVector(&r, &theta);
 
-#ifdef RUN_MOTORS
     fl = -127 * cos(M_PI/4-theta);
     fr = 127 * cos(M_PI/4+theta);
     bl = -127 * cos(M_PI/4+theta);

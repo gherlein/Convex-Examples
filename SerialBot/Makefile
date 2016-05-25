@@ -252,9 +252,9 @@ endif
 
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk
 
-SERIAL_PORT = /dev/tty.usbmodem14170 
 #SERIAL_PORT = /dev/tty.usbmodem14170 
-#SERIAL_PORT = /dev/tty.usbmodem1420
+#SERIAL_PORT = /dev/tty.usbmodem14170 
+SERIAL_PORT = /dev/tty.usbmodem1410
 
 install:
 	$(CORTEX_FLASH_FOLDER)cortexflash -X -w bin/$(PROJECT).hex -g 0x0 $(SERIAL_PORT)
