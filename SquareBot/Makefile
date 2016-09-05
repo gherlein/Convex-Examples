@@ -252,7 +252,7 @@ endif
 
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk
 
-SERIAL_PORT = /dev/tty.usbmodem14170 
+SERIAL_PORT = /dev/tty.usbmodem14241
 #SERIAL_PORT = /dev/tty.usbmodem14171
 #SERIAL_PORT = /dev/tty.usbmodem14170 
 #SERIAL_PORT = /dev/tty.usbmodem1420
